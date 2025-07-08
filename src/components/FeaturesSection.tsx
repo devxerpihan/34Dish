@@ -1,4 +1,4 @@
-import { Search, Star, Target, Zap, Smartphone, DollarSign, Filter, TrendingUp, Users, MapPin, Brain, Cpu } from "lucide-react";
+import { Star, Zap, DollarSign, TrendingUp, Brain, Cpu } from "lucide-react";
 import FeatureCard from "./FeatureCard";
 
 const features = [

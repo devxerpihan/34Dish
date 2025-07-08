@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Sparkles, Users, Star, Brain } from "lucide-react";
+import { Sparkles, Star, Brain } from "lucide-react";
 
 export default function CTASection() {
   return (

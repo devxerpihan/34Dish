@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, ArrowRight, Sparkles, MapPin, Star, Utensils, Filter, Users, Brain, Zap } from "lucide-react";
+import { Search, ArrowRight, MapPin, Star, Utensils, Brain, Zap } from "lucide-react";
 
 export default function HeroSection() {
   return (

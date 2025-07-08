@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, X, Search, User, Brain } from "lucide-react";
+import { Menu, X, User, Brain } from "lucide-react";
 import { useState } from "react";
 
 export default function Header() {
