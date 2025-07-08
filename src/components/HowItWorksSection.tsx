@@ -1,4 +1,4 @@
-import { Users, Search, Utensils, Filter, Star, MapPin, TrendingUp, Brain, Cpu, Zap } from "lucide-react";
+import { Users, Search, Utensils, Filter, Brain, Cpu, Zap } from "lucide-react";
 
 const steps = [
   {

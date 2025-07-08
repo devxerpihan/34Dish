@@ -1,4 +1,3 @@
-import { Star, Quote, Brain, Zap } from "lucide-react";
 import TestimonialCard from "./TestimonialCard";
 
 const testimonials = [
@@ -67,7 +66,7 @@ export default function TestimonialsSection() {
             </span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            See what our users say about discovering amazing restaurants through 34Dish's AI-powered multi-platform aggregation and intelligent personalized recommendations.
+            See what our users say about discovering amazing restaurants through 34Dish&apos;s AI-powered multi-platform aggregation and intelligent personalized recommendations.
           </p>
         </div>
 
