@@ -128,7 +128,7 @@ export default function HeroSection() {
               <div className="relative group">
                 <div className="aspect-square rounded-2xl overflow-hidden shadow-lg group-hover:shadow-xl transition-all duration-300">
                   <Image
-                    src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=400&fit=crop&crop=center"
+                    src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&h=400&fit=crop&crop=center"
                     alt="Juicy burger"
                     width={200}
                     height={200}
