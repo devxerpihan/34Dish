@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, ArrowRight, MapPin, Star, Utensils, Heart, Zap } from "lucide-react";
+import { Search, ArrowRight, Heart, Zap } from "lucide-react";
 import Image from "next/image";
 
 export default function HeroSection() {

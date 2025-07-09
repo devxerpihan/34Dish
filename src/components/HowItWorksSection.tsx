@@ -1,4 +1,4 @@
-import { Heart, Search, Utensils, MapPin, Star, Users } from "lucide-react";
+import { Heart, Search, Utensils } from "lucide-react";
 
 const steps = [
   {
