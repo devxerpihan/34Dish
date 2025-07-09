@@ -39,7 +39,7 @@ export default function HowItWorksSection() {
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            It's simple! Tell us what you love, we find the best spots, and you enjoy amazing food experiences. No complicated algorithms, just great recommendations.
+            It&apos;s simple! Tell us what you love, we find the best spots, and you enjoy amazing food experiences. No complicated algorithms, just great recommendations.
           </p>
         </div>
 

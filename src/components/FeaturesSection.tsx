@@ -1,4 +1,4 @@
-import { Star, Zap, DollarSign, TrendingUp, Heart, Utensils, MapPin, Sparkles } from "lucide-react";
+import { DollarSign, TrendingUp, Heart, Utensils, MapPin, Sparkles } from "lucide-react";
 import FeatureCard from "./FeatureCard";
 
 const features = [
