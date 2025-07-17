@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Target, AlertTriangle, CheckCircle, Lightbulb, Clock, Heart, TrendingUp, Scale } from 'lucide-react';
+import { Target, AlertTriangle, Lightbulb, Heart, TrendingUp, Scale } from 'lucide-react';
 import { mockInsights, mockRecommendations, getNutritionScore } from '../data/mockMeals';
 
 const getCategoryIcon = (category: string) => {
