@@ -1,26 +1,27 @@
-import { Heart, Search, Utensils } from "lucide-react";
+import { Heart, Search, Utensils, Target, Clock } from "lucide-react";
+import { motion } from "framer-motion";
 
 const steps = [
   {
-    icon: Heart,
-    title: "Tell Us What You Love",
-    description: "Share your favorite cuisines, price preferences, and which celebrities you follow. We'll use this to find restaurants that match your taste.",
+    icon: Target,
+    title: "Set Your Preferences",
+    description: "Tell us your dietary needs, fitness goals, and budget. We'll use this to find restaurants that match your lifestyle and health objectives.",
     bgColor: "bg-gradient-to-br from-amber-500 to-orange-500",
-    details: ["Cuisine preferences", "Price range", "Celebrity favorites", "Location preferences"]
+    details: ["Dietary preferences", "Fitness goals", "Budget range", "Health focus"]
   },
   {
     icon: Search,
-    title: "We Find the Best Spots",
-    description: "Our platform searches through Grab Dine-Out, Google Maps, Instagram, TikTok, and more to find restaurants that match your preferences.",
+    title: "Get Instant Matches",
+    description: "Our platform finds restaurants that align with your preferences and are within walking distance. No more hours of searching and deciding.",
     bgColor: "bg-gradient-to-br from-orange-500 to-red-500",
-    details: ["Multi-platform search", "Celebrity recommendations", "Trending spots", "Hidden gems"]
+    details: ["Quick matching", "Walking distance", "Health-focused", "Budget-friendly"]
   },
   {
-    icon: Utensils,
-    title: "Enjoy Amazing Food",
-    description: "Get personalized recommendations with insights from celebrities, trending social media content, and real user reviews all in one place.",
+    icon: Clock,
+    title: "Walk & Enjoy",
+    description: "Get your personalized recommendation and walk to the restaurant in 1-3 minutes. Enjoy fresh, healthy meals without delivery fees or long waits.",
     bgColor: "bg-gradient-to-br from-red-500 to-pink-500",
-    details: ["Personalized results", "Celebrity insights", "Social proof", "Easy booking"]
+    details: ["1-3 minute walks", "Fresh meals", "No delivery fees", "Healthy choices"]
   }
 ];
 
@@ -29,33 +30,77 @@ export default function HowItWorksSection() {
     <section id="how-it-works" className="py-24 lg:py-32 bg-gradient-to-br from-amber-50 via-orange-50 to-red-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-20">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
           <h2 className="text-5xl lg:text-7xl font-poppins font-bold mb-6">
-            <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
+            <motion.span 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent"
+            >
               How 34Dish
-            </span>
-            <span className="block bg-gradient-to-r from-orange-600 via-red-600 to-orange-600 bg-clip-text text-transparent">
+            </motion.span>
+            <motion.span 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="block bg-gradient-to-r from-orange-600 via-red-600 to-orange-600 bg-clip-text text-transparent"
+            >
               Works for You
-            </span>
+            </motion.span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            viewport={{ once: true }}
+            className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+          >
             It&apos;s simple! Tell us what you love, we find the best spots, and you enjoy amazing food experiences. No complicated algorithms, just great recommendations.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Steps */}
         <div className="grid lg:grid-cols-3 gap-16 lg:gap-20">
           {steps.map((step, index) => (
-            <div key={index} className="relative text-center">
+            <motion.div 
+              key={index} 
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
+              viewport={{ once: true }}
+              className="relative text-center"
+            >
               {/* Step Number */}
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-sm font-bold text-orange-600">
+              <motion.div 
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.2 + 0.3 }}
+                viewport={{ once: true }}
+                className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-sm font-bold text-orange-600"
+              >
                 {index + 1}
-              </div>
+              </motion.div>
 
               {/* Icon */}
-              <div className={`mx-auto w-32 h-32 ${step.bgColor} rounded-full flex items-center justify-center mb-8 shadow-xl`}>
+              <motion.div 
+                className={`mx-auto w-32 h-32 ${step.bgColor} rounded-full flex items-center justify-center mb-8 shadow-xl`}
+                whileHover={{ 
+                  scale: 1.1,
+                  rotate: 360
+                }}
+                transition={{ duration: 0.6 }}
+              >
                 <step.icon className="w-12 h-12 text-white" />
-              </div>
+              </motion.div>
 
               {/* Content */}
               <div className="space-y-4">
@@ -67,52 +112,87 @@ export default function HowItWorksSection() {
                 {/* Details */}
                 <div className="mt-6 space-y-2">
                   {step.details.map((detail, detailIndex) => (
-                    <div key={detailIndex} className="flex items-center justify-center space-x-2 text-sm text-gray-500">
-                      <div className="w-1.5 h-1.5 bg-orange-400 rounded-full"></div>
+                    <motion.div 
+                      key={detailIndex} 
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.2 + 0.5 + detailIndex * 0.1 }}
+                      viewport={{ once: true }}
+                      className="flex items-center justify-center space-x-2 text-sm text-gray-500"
+                    >
+                      <motion.div 
+                        className="w-1.5 h-1.5 bg-orange-400 rounded-full"
+                        animate={{ scale: [1, 1.5, 1] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: detailIndex * 0.2 }}
+                      ></motion.div>
                       <span>{detail}</span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
 
               {/* Connector Line */}
               {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-16 -right-10 w-20 h-0.5 bg-gradient-to-r from-orange-300 to-red-300"></div>
+                <motion.div 
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  transition={{ duration: 1, delay: index * 0.2 + 0.8 }}
+                  viewport={{ once: true }}
+                  className="hidden lg:block absolute top-16 -right-10 w-20 h-0.5 bg-gradient-to-r from-orange-300 to-red-300 origin-left"
+                ></motion.div>
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Platform Sources */}
-        <div className="mt-20 text-center">
-          <h3 className="text-2xl font-semibold text-gray-900 mb-8">We Search These Platforms</h3>
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          viewport={{ once: true }}
+          className="mt-20 text-center"
+        >
+          <motion.h3 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            viewport={{ once: true }}
+            className="text-2xl font-semibold text-gray-900 mb-8"
+          >
+            We Search These Platforms
+          </motion.h3>
           <div className="flex justify-center items-center space-x-8">
-            <div className="flex flex-col items-center space-y-2">
-              <div className="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center">
-                <span className="text-orange-600 font-bold text-xl">G</span>
-              </div>
-              <span className="text-sm text-gray-600">Grab Dine-Out</span>
-            </div>
-            <div className="flex flex-col items-center space-y-2">
-              <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center">
-                <span className="text-red-600 font-bold text-xl">M</span>
-              </div>
-              <span className="text-sm text-gray-600">Google Maps</span>
-            </div>
-            <div className="flex flex-col items-center space-y-2">
-              <div className="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center">
-                <span className="text-pink-600 font-bold text-xl">I</span>
-              </div>
-              <span className="text-sm text-gray-600">Instagram</span>
-            </div>
-            <div className="flex flex-col items-center space-y-2">
-              <div className="w-16 h-16 bg-gray-800 rounded-2xl flex items-center justify-center">
-                <span className="text-white font-bold text-xl">T</span>
-              </div>
-              <span className="text-sm text-gray-600">TikTok</span>
-            </div>
+            {[
+              { letter: "G", color: "orange", name: "Grab Dine-Out" },
+              { letter: "M", color: "red", name: "Google Maps" },
+              { letter: "I", color: "pink", name: "Instagram" },
+              { letter: "T", color: "gray", name: "TikTok" }
+            ].map((platform, index) => (
+              <motion.div 
+                key={platform.name}
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.1, y: -5 }}
+                className="flex flex-col items-center space-y-2"
+              >
+                <motion.div 
+                  className={`w-16 h-16 bg-${platform.color}-100 rounded-2xl flex items-center justify-center`}
+                  whileHover={{ 
+                    rotate: 360,
+                    scale: 1.1
+                  }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <span className={`text-${platform.color}-600 font-bold text-xl`}>{platform.letter}</span>
+                </motion.div>
+                <span className="text-sm text-gray-600">{platform.name}</span>
+              </motion.div>
+            ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

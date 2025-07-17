@@ -4,7 +4,11 @@ import Link from "next/link";
 import { Menu, X, User, Heart } from "lucide-react";
 import { useState } from "react";
 
-export default function Header() {
+interface HeaderProps {
+  onShowLogin: () => void;
+}
+
+export default function Header({ onShowLogin }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -43,11 +47,17 @@ export default function Header() {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center space-x-4">
-            <button className="text-gray-600 hover:text-orange-600 transition-colors font-medium flex items-center space-x-2">
+            <button 
+              onClick={onShowLogin}
+              className="text-gray-600 hover:text-orange-600 transition-colors font-medium flex items-center space-x-2"
+            >
               <User className="w-4 h-4" />
               <span>Sign In</span>
             </button>
-            <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center space-x-2">
+            <button 
+              onClick={onShowLogin}
+              className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center space-x-2"
+            >
               <Heart className="w-4 h-4" />
               <span>Get Started</span>
             </button>
@@ -95,11 +105,23 @@ export default function Header() {
                 Pricing
               </Link>
               <div className="pt-4 border-t border-orange-200/50 space-y-3">
-                <button className="w-full text-left text-gray-600 hover:text-orange-600 transition-colors font-medium py-2 px-4 rounded-lg hover:bg-orange-50 flex items-center space-x-2">
+                <button 
+                  onClick={() => {
+                    onShowLogin();
+                    setIsMenuOpen(false);
+                  }}
+                  className="w-full text-left text-gray-600 hover:text-orange-600 transition-colors font-medium py-2 px-4 rounded-lg hover:bg-orange-50 flex items-center space-x-2"
+                >
                   <User className="w-4 h-4" />
                   <span>Sign In</span>
                 </button>
-                <button className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2">
+                <button 
+                  onClick={() => {
+                    onShowLogin();
+                    setIsMenuOpen(false);
+                  }}
+                  className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
+                >
                   <Heart className="w-4 h-4" />
                   <span>Get Started</span>
                 </button>
@@ -108,6 +130,7 @@ export default function Header() {
           </div>
         )}
       </div>
+
     </header>
   );
 } 

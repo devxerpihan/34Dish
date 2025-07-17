@@ -1,4 +1,5 @@
 import { LucideIcon } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface FeatureCardProps {
   icon: LucideIcon;
@@ -10,13 +11,28 @@ interface FeatureCardProps {
 
 export default function FeatureCard({ icon: Icon, title, description, gradient, iconGradient }: FeatureCardProps) {
   return (
-    <div className="group relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-orange-200/50 hover:border-orange-400/50 transition-all duration-300 hover:shadow-2xl">
+    <motion.div 
+      className="group relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-orange-200/50 hover:border-orange-400/50 transition-all duration-300 hover:shadow-2xl"
+      whileHover={{ 
+        scale: 1.05,
+        rotateY: 5,
+        rotateX: 5
+      }}
+      transition={{ duration: 0.3 }}
+    >
       <div className={`absolute inset-0 ${gradient} rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
       <div className="relative z-10 space-y-6">
         {/* Icon */}
-        <div className={`w-16 h-16 ${iconGradient} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+        <motion.div 
+          className={`w-16 h-16 ${iconGradient} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
+          whileHover={{ 
+            rotate: 360,
+            scale: 1.2
+          }}
+          transition={{ duration: 0.6 }}
+        >
           <Icon className="w-8 h-8 text-white" />
-        </div>
+        </motion.div>
 
         {/* Content */}
         <div className="space-y-4">
@@ -29,8 +45,13 @@ export default function FeatureCard({ icon: Icon, title, description, gradient, 
         </div>
 
         {/* Hover Effect */}
-        <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-orange-500 to-red-500 group-hover:w-full transition-all duration-500 rounded-full"></div>
+        <motion.div 
+          className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"
+          initial={{ width: 0 }}
+          whileHover={{ width: "100%" }}
+          transition={{ duration: 0.5 }}
+        ></motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 } 

@@ -1,46 +1,47 @@
-import { DollarSign, TrendingUp, Heart, Utensils, MapPin, Sparkles } from "lucide-react";
+import { DollarSign, TrendingUp, Heart, Utensils, MapPin, Sparkles, Target, Clock } from "lucide-react";
 import FeatureCard from "./FeatureCard";
+import { motion } from "framer-motion";
 
 const features = [
   {
-    icon: Utensils,
-    title: "Multi-Platform Aggregation",
-    description: "We bring together the best restaurant recommendations from Grab Dine-Out, Google Maps, Instagram, TikTok, and more in one delicious place.",
+    icon: Target,
+    title: "Personalized for Your Goals",
+    description: "Set your dietary preferences, fitness goals, and budget. We match you with restaurants that align with your health and lifestyle choices.",
     gradient: "bg-gradient-to-br from-amber-500/20 to-orange-500/20",
     iconGradient: "bg-gradient-to-br from-amber-500 to-orange-500"
   },
   {
-    icon: Heart,
-    title: "Celebrity & Influencer Spots",
-    description: "Discover restaurants loved by celebrities and influencers. Find the same spots where your favorite personalities enjoy their meals.",
+    icon: Clock,
+    title: "Quick Decision Making",
+    description: "Stop spending hours deciding what to eat. Get instant recommendations based on your preferences and walk to your meal in minutes.",
     gradient: "bg-gradient-to-br from-orange-500/20 to-red-500/20",
     iconGradient: "bg-gradient-to-br from-orange-500 to-red-500"
   },
   {
-    icon: Sparkles,
-    title: "Personalized Recommendations",
-    description: "Tell us what you love to eat and we'll find the perfect spots for you. Our smart matching learns your preferences over time.",
+    icon: Heart,
+    title: "Health-Focused Options",
+    description: "Find restaurants that cater to your dietary needs - high-protein, low-calorie, vegan, halal, and more. Eat well without compromise.",
     gradient: "bg-gradient-to-br from-red-500/20 to-pink-500/20",
     iconGradient: "bg-gradient-to-br from-red-500 to-pink-500"
   },
   {
-    icon: TrendingUp,
-    title: "Trending & Viral Spots",
-    description: "Stay ahead of the curve with trending restaurants from Instagram and TikTok. Discover the next big thing before everyone else.",
+    icon: MapPin,
+    title: "Walkable Locations",
+    description: "All recommendations are within walking distance. No more delivery fees or long waits - just fresh, healthy meals nearby.",
     gradient: "bg-gradient-to-br from-pink-500/20 to-rose-500/20",
     iconGradient: "bg-gradient-to-br from-pink-500 to-rose-500"
   },
   {
-    icon: MapPin,
-    title: "Location-Based Discovery",
-    description: "Find amazing restaurants near you or plan your next food adventure. Get recommendations based on your location and travel plans.",
+    icon: DollarSign,
+    title: "Budget-Friendly Choices",
+    description: "Price is the top factor for 86% of people. We show you options that fit your budget while meeting your health goals.",
     gradient: "bg-gradient-to-br from-rose-500/20 to-amber-500/20",
     iconGradient: "bg-gradient-to-br from-rose-500 to-amber-500"
   },
   {
-    icon: DollarSign,
-    title: "Best Deals & Promotions",
-    description: "Never miss a great deal! We track promotions and special offers from all platforms to help you save while dining out.",
+    icon: Sparkles,
+    title: "Clean & Simple Experience",
+    description: "No overwhelming choices or complicated interfaces. Just clean, focused recommendations that help you make better food decisions.",
     gradient: "bg-gradient-to-br from-amber-500/20 to-orange-500/20",
     iconGradient: "bg-gradient-to-br from-amber-500 to-orange-500"
   }
@@ -57,31 +58,63 @@ export default function FeaturesSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-20">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
           <h2 className="text-5xl lg:text-7xl font-poppins font-bold mb-6">
-            <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
+            <motion.span 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent"
+            >
               Everything You Need
-            </span>
-            <span className="block bg-gradient-to-r from-orange-600 via-red-600 to-orange-600 bg-clip-text text-transparent">
+            </motion.span>
+            <motion.span 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="block bg-gradient-to-r from-orange-600 via-red-600 to-orange-600 bg-clip-text text-transparent"
+            >
               For Amazing Dining
-            </span>
+            </motion.span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            viewport={{ once: true }}
+            className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+          >
             We bring together the best of all platforms to help you discover incredible restaurants, trending spots, and hidden gems loved by celebrities and food enthusiasts.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Features Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {features.map((feature, index) => (
-            <FeatureCard
+            <motion.div
               key={index}
-              icon={feature.icon}
-              title={feature.title}
-              description={feature.description}
-              gradient={feature.gradient}
-              iconGradient={feature.iconGradient}
-            />
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -10 }}
+            >
+              <FeatureCard
+                icon={feature.icon}
+                title={feature.title}
+                description={feature.description}
+                gradient={feature.gradient}
+                iconGradient={feature.iconGradient}
+              />
+            </motion.div>
           ))}
         </div>
       </div>
