@@ -5,27 +5,6 @@ import { motion } from 'framer-motion';
 import { Brain, Target, TrendingUp, Lightbulb, Zap, Heart, Scale } from 'lucide-react';
 import { mockInsights, mockRecommendations, getNutritionScore } from '../data/mockMeals';
 
-interface NutritionInsight {
-  id: string;
-  type: 'positive' | 'warning' | 'recommendation' | 'achievement';
-  title: string;
-  description: string;
-  icon: any;
-  color: string;
-  bgColor: string;
-  action?: string;
-}
-
-interface NutritionRecommendation {
-  id: string;
-  title: string;
-  description: string;
-  reasoning: string;
-  impact: string;
-  difficulty: 'easy' | 'medium' | 'hard';
-  category: 'protein' | 'carbs' | 'fats' | 'fiber' | 'vitamins' | 'general';
-}
-
 export default function NutritionInsights() {
   // Use mock data
   const insights = mockInsights;
