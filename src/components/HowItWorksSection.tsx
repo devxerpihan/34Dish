@@ -62,7 +62,7 @@ export default function HowItWorksSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             viewport={{ once: true }}
-            className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed"
           >
             It&apos;s simple! Tell us what you love, we find the best spots, and you enjoy amazing food experiences. No complicated algorithms, just great recommendations.
           </motion.p>

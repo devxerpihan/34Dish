@@ -186,7 +186,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
-                className="text-xl text-gray-600 leading-relaxed max-w-lg"
+                className="text-xl text-gray-700 leading-relaxed max-w-lg"
               >
                 Get personalized restaurant recommendations based on your dietary preferences, fitness goals, and budget. 
                 Walk to your perfect meal in minutes, not hours of searching.
@@ -204,7 +204,7 @@ export default function HeroSection() {
                 <Users className="w-5 h-5 mr-2 text-orange-500" />
                 The Problem
               </h3>
-              <div className="space-y-3 text-sm text-gray-700">
+              <div className="space-y-3 text-sm text-gray-800">
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-red-500 rounded-full"></div>
                   <span>86% of people struggle with deciding what to eat</span>
@@ -258,7 +258,7 @@ export default function HeroSection() {
                       {step.title}
                     </h3>
                     <p className={`text-sm ${
-                      currentStep === index ? 'text-white/90' : 'text-gray-600'
+                      currentStep === index ? 'text-white/90' : 'text-gray-700'
                     }`}>
                       {step.description}
                     </p>
@@ -408,12 +408,12 @@ export default function HeroSection() {
                                 </motion.button>
                               </div>
                             </div>
-                            <p className="text-sm text-gray-600">{restaurant.cuisine}</p>
+                            <p className="text-sm text-gray-700">{restaurant.cuisine}</p>
                             <div className="flex items-center space-x-2 mt-1">
                               <Star className="h-3 w-3 text-yellow-400 fill-current" />
                               <span className="text-xs font-medium">{restaurant.rating}</span>
-                              <span className="text-xs text-gray-500">{restaurant.priceRange}</span>
-                              <span className="text-xs text-gray-500">• {restaurant.waitTime}</span>
+                              <span className="text-xs text-gray-700">{restaurant.priceRange}</span>
+                              <span className="text-xs text-gray-700">• {restaurant.waitTime}</span>
                             </div>
                             <div className="flex space-x-1 mt-2">
                               {restaurant.dietaryTags.map(tag => (

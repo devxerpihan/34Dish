@@ -209,50 +209,50 @@ export default function PreferencesModal({ isOpen, onClose, preferences, onSave 
         exit={{ opacity: 0 }}
         className="fixed inset-0 z-50 overflow-y-auto bg-black/50 backdrop-blur-sm"
       >
-        <div className="flex items-center justify-center min-h-screen p-4">
+        <div className="flex items-center justify-center min-h-screen p-2 sm:p-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="bg-white rounded-3xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden"
+            className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl max-w-6xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-hidden"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-orange-500 to-red-500 px-8 py-6">
+            <div className="bg-gradient-to-r from-orange-500 to-red-500 px-4 sm:px-8 py-4 sm:py-6">
               <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                    <Settings className="w-6 h-6 text-white" />
+                <div className="flex items-center space-x-3 sm:space-x-4">
+                  <div className="w-8 h-8 sm:w-12 sm:h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                    <Settings className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-white">Preferences</h2>
-                    <p className="text-white/80">Customize your dining experience</p>
+                    <h2 className="text-lg sm:text-2xl font-bold text-white">Preferences</h2>
+                    <p className="text-white/80 text-xs sm:text-sm">Customize your dining experience</p>
                   </div>
                 </div>
                 <button
                   onClick={onClose}
-                  className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                  className="w-8 h-8 sm:w-10 sm:h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </div>
             </div>
 
             {/* Tabs */}
             <div className="border-b border-gray-200 bg-gray-50">
-              <div className="flex space-x-1 px-8 py-4">
+              <div className="flex space-x-1 px-4 sm:px-8 py-3 sm:py-4 overflow-x-auto scrollbar-hide">
                 {tabs.map((tab) => (
                   <motion.button
                     key={tab.id}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center space-x-2 px-6 py-3 rounded-xl font-medium transition-all ${
+                    className={`flex items-center space-x-2 px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-medium transition-all whitespace-nowrap text-xs sm:text-sm ${
                       activeTab === tab.id
                         ? 'bg-white text-orange-600 shadow-md'
                         : 'text-gray-600 hover:text-gray-900 hover:bg-white/50'
                     }`}
                   >
-                    <tab.icon className="w-4 h-4" />
+                    <tab.icon className="w-3 h-3 sm:w-4 sm:h-4" />
                     <span>{tab.label}</span>
                   </motion.button>
                 ))}
@@ -260,7 +260,7 @@ export default function PreferencesModal({ isOpen, onClose, preferences, onSave 
             </div>
 
             {/* Content */}
-            <div className="p-8 overflow-y-auto max-h-[calc(90vh-12rem)]">
+            <div className="p-4 sm:p-8 overflow-y-auto max-h-[calc(95vh-8rem)] sm:max-h-[calc(90vh-12rem)]">
               <AnimatePresence mode="wait">
                 {activeTab === 'basic' && (
                   <motion.div
@@ -268,37 +268,37 @@ export default function PreferencesModal({ isOpen, onClose, preferences, onSave 
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    className="space-y-8"
+                    className="space-y-4 sm:space-y-8"
                   >
                     {/* Dietary Preferences */}
-                    <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6">
-                      <div className="flex items-center space-x-3 mb-6">
-                        <div className="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center">
-                          <Heart className="w-5 h-5 text-white" />
+                    <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-4 sm:p-6">
+                      <div className="flex items-center space-x-3 mb-4 sm:mb-6">
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-500 rounded-xl flex items-center justify-center">
+                          <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                         </div>
                         <div>
-                          <h3 className="text-xl font-semibold text-gray-900">Dietary Preferences</h3>
-                          <p className="text-gray-600">Tell us about your dietary needs and restrictions</p>
+                          <h3 className="text-lg sm:text-xl font-semibold text-gray-900">Dietary Preferences</h3>
+                          <p className="text-gray-700 text-xs sm:text-sm">Tell us about your dietary needs and restrictions</p>
                         </div>
                       </div>
                       
-                      <div className="grid md:grid-cols-2 gap-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-3">Current Preferences</label>
+                          <label className="block text-sm font-medium text-gray-800 mb-2 sm:mb-3">Current Preferences</label>
                           <div className="space-y-2">
                             {localPreferences.dietaryPreferences.map((dietary) => (
                               <motion.div
                                 key={dietary}
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
-                                className="flex items-center justify-between bg-white rounded-lg px-4 py-3 shadow-sm"
+                                className="flex items-center justify-between bg-white rounded-lg px-3 sm:px-4 py-2 sm:py-3 shadow-sm"
                               >
-                                <span className="text-sm font-medium text-gray-900">{dietary}</span>
+                                <span className="text-xs sm:text-sm font-medium text-gray-900 truncate">{dietary}</span>
                                 <button
                                   onClick={() => removeDietary(dietary)}
-                                  className="text-red-500 hover:text-red-700 transition-colors"
+                                  className="text-red-500 hover:text-red-700 transition-colors ml-2"
                                 >
-                                  <Trash2 className="w-4 h-4" />
+                                  <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
                                 </button>
                               </motion.div>
                             ))}
@@ -306,7 +306,7 @@ export default function PreferencesModal({ isOpen, onClose, preferences, onSave 
                         </div>
                         
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-3">Add New Preference</label>
+                          <label className="block text-sm font-medium text-gray-800 mb-2 sm:mb-3">Add New Preference</label>
                           <div className="flex space-x-2">
                             <input
                               type="text"
@@ -314,25 +314,25 @@ export default function PreferencesModal({ isOpen, onClose, preferences, onSave 
                               onChange={(e) => setNewDietary(e.target.value)}
                               onKeyPress={(e) => e.key === 'Enter' && addDietary()}
                               placeholder="e.g., Keto, Paleo..."
-                              className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                              className="flex-1 px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
                             />
                             <motion.button
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
                               onClick={addDietary}
-                              className="px-4 py-3 bg-green-500 text-white rounded-xl hover:bg-green-600 transition-colors"
+                              className="px-3 sm:px-4 py-2 sm:py-3 bg-green-500 text-white rounded-xl hover:bg-green-600 transition-colors"
                             >
-                              <Plus className="w-5 h-5" />
+                              <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
                             </motion.button>
                           </div>
-                          <div className="mt-3 flex flex-wrap gap-2">
+                          <div className="mt-2 sm:mt-3 flex flex-wrap gap-1 sm:gap-2">
                             {DIETARY_OPTIONS.slice(0, 6).map((option) => (
                               <motion.button
                                 key={option}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setNewDietary(option)}
-                                className="px-3 py-1 bg-white border border-gray-300 rounded-full text-xs text-gray-700 hover:bg-gray-50 transition-colors"
+                                className="px-2 sm:px-3 py-1 bg-white border border-gray-300 rounded-full text-xs text-gray-700 hover:bg-gray-50 transition-colors"
                               >
                                 {option}
                               </motion.button>
@@ -343,34 +343,34 @@ export default function PreferencesModal({ isOpen, onClose, preferences, onSave 
                     </div>
 
                     {/* Fitness Goals */}
-                    <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6">
-                      <div className="flex items-center space-x-3 mb-6">
-                        <div className="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center">
-                          <Target className="w-5 h-5 text-white" />
+                    <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-4 sm:p-6">
+                      <div className="flex items-center space-x-3 mb-4 sm:mb-6">
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-500 rounded-xl flex items-center justify-center">
+                          <Target className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                         </div>
                         <div>
-                          <h3 className="text-xl font-semibold text-gray-900">Fitness Goals</h3>
-                          <p className="text-gray-600">What are your fitness and health objectives?</p>
+                          <h3 className="text-lg sm:text-xl font-semibold text-gray-900">Fitness Goals</h3>
+                          <p className="text-gray-700 text-xs sm:text-sm">What are your fitness and health objectives?</p>
                         </div>
                       </div>
                       
-                      <div className="grid md:grid-cols-2 gap-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-3">Current Goals</label>
+                          <label className="block text-sm font-medium text-gray-800 mb-2 sm:mb-3">Current Goals</label>
                           <div className="space-y-2">
                             {localPreferences.fitnessGoals.map((goal) => (
                               <motion.div
                                 key={goal}
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
-                                className="flex items-center justify-between bg-white rounded-lg px-4 py-3 shadow-sm"
+                                className="flex items-center justify-between bg-white rounded-lg px-3 sm:px-4 py-2 sm:py-3 shadow-sm"
                               >
-                                <span className="text-sm font-medium text-gray-900">{goal}</span>
+                                <span className="text-xs sm:text-sm font-medium text-gray-900 truncate">{goal}</span>
                                 <button
                                   onClick={() => removeFitnessGoal(goal)}
-                                  className="text-red-500 hover:text-red-700 transition-colors"
+                                  className="text-red-500 hover:text-red-700 transition-colors ml-2"
                                 >
-                                  <Trash2 className="w-4 h-4" />
+                                  <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
                                 </button>
                               </motion.div>
                             ))}
@@ -378,7 +378,7 @@ export default function PreferencesModal({ isOpen, onClose, preferences, onSave 
                         </div>
                         
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-3">Add New Goal</label>
+                          <label className="block text-sm font-medium text-gray-800 mb-2 sm:mb-3">Add New Goal</label>
                           <div className="flex space-x-2">
                             <input
                               type="text"
@@ -386,25 +386,25 @@ export default function PreferencesModal({ isOpen, onClose, preferences, onSave 
                               onChange={(e) => setNewFitnessGoal(e.target.value)}
                               onKeyPress={(e) => e.key === 'Enter' && addFitnessGoal()}
                               placeholder="e.g., Muscle Building..."
-                              className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                              className="flex-1 px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
                             />
                             <motion.button
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
                               onClick={addFitnessGoal}
-                              className="px-4 py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition-colors"
+                              className="px-3 sm:px-4 py-2 sm:py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition-colors"
                             >
-                              <Plus className="w-5 h-5" />
+                              <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
                             </motion.button>
                           </div>
-                          <div className="mt-3 flex flex-wrap gap-2">
+                          <div className="mt-2 sm:mt-3 flex flex-wrap gap-1 sm:gap-2">
                             {FITNESS_GOALS.slice(0, 6).map((goal) => (
                               <motion.button
                                 key={goal}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setNewFitnessGoal(goal)}
-                                className="px-3 py-1 bg-white border border-gray-300 rounded-full text-xs text-gray-700 hover:bg-gray-50 transition-colors"
+                                className="px-2 sm:px-3 py-1 bg-white border border-gray-300 rounded-full text-xs text-gray-700 hover:bg-gray-50 transition-colors"
                               >
                                 {goal}
                               </motion.button>
@@ -415,36 +415,36 @@ export default function PreferencesModal({ isOpen, onClose, preferences, onSave 
                     </div>
 
                     {/* Budget & Location */}
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       {/* Budget Range */}
-                      <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6">
-                        <div className="flex items-center space-x-3 mb-6">
-                          <div className="w-10 h-10 bg-purple-500 rounded-xl flex items-center justify-center">
-                            <DollarSign className="w-5 h-5 text-white" />
+                      <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-4 sm:p-6">
+                        <div className="flex items-center space-x-3 mb-4 sm:mb-6">
+                          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-purple-500 rounded-xl flex items-center justify-center">
+                            <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                           </div>
                           <div>
-                            <h3 className="text-xl font-semibold text-gray-900">Budget Range</h3>
-                            <p className="text-gray-600">Set your preferred spending range</p>
+                            <h3 className="text-lg sm:text-xl font-semibold text-gray-900">Budget Range</h3>
+                            <p className="text-gray-700 text-xs sm:text-sm">Set your preferred spending range</p>
                           </div>
                         </div>
                         
-                        <div className="space-y-4">
+                        <div className="space-y-2 sm:space-y-4">
                           {PRICE_RANGES.map((range) => (
                             <motion.button
                               key={range.label}
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
                               onClick={() => updatePriceRange(range.min, range.max)}
-                              className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
+                              className={`w-full text-left p-3 sm:p-4 rounded-xl border-2 transition-all ${
                                 localPreferences.priceRange.min === range.min && localPreferences.priceRange.max === range.max
                                   ? 'border-purple-500 bg-purple-50'
                                   : 'border-gray-200 bg-white hover:border-purple-300'
                               }`}
                             >
                               <div className="flex items-center justify-between">
-                                <span className="font-medium text-gray-900">{range.label}</span>
+                                <span className="font-medium text-gray-900 text-sm sm:text-base">{range.label}</span>
                                 {localPreferences.priceRange.min === range.min && localPreferences.priceRange.max === range.max && (
-                                  <CheckCircle className="w-5 h-5 text-purple-500" />
+                                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-purple-500" />
                                 )}
                               </div>
                             </motion.button>
@@ -453,34 +453,34 @@ export default function PreferencesModal({ isOpen, onClose, preferences, onSave 
                       </div>
 
                       {/* Location Radius */}
-                      <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-6">
-                        <div className="flex items-center space-x-3 mb-6">
-                          <div className="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center">
-                            <MapPin className="w-5 h-5 text-white" />
+                      <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-4 sm:p-6">
+                        <div className="flex items-center space-x-3 mb-4 sm:mb-6">
+                          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-orange-500 rounded-xl flex items-center justify-center">
+                            <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                           </div>
                           <div>
-                            <h3 className="text-xl font-semibold text-gray-900">Walking Distance</h3>
-                            <p className="text-gray-600">How far are you willing to walk?</p>
+                            <h3 className="text-lg sm:text-xl font-semibold text-gray-900">Walking Distance</h3>
+                            <p className="text-gray-700 text-xs sm:text-sm">How far are you willing to walk?</p>
                           </div>
                         </div>
                         
-                        <div className="space-y-4">
+                        <div className="space-y-2 sm:space-y-4">
                           {LOCATION_RADIUS_OPTIONS.map((option) => (
                             <motion.button
                               key={option.label}
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
                               onClick={() => updateLocationRadius(option.value)}
-                              className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
+                              className={`w-full text-left p-3 sm:p-4 rounded-xl border-2 transition-all ${
                                 localPreferences.location.radius === option.value
                                   ? 'border-orange-500 bg-orange-50'
                                   : 'border-gray-200 bg-white hover:border-orange-300'
                               }`}
                             >
                               <div className="flex items-center justify-between">
-                                <span className="font-medium text-gray-900">{option.label}</span>
+                                <span className="font-medium text-gray-900 text-sm sm:text-base">{option.label}</span>
                                 {localPreferences.location.radius === option.value && (
-                                  <CheckCircle className="w-5 h-5 text-orange-500" />
+                                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500" />
                                 )}
                               </div>
                             </motion.button>

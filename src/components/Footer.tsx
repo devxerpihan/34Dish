@@ -11,22 +11,22 @@ export default function Footer() {
               <h3 className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
                 34Dish
               </h3>
-              <p className="text-gray-700 leading-relaxed max-w-md">
+              <p className="text-gray-800 leading-relaxed max-w-md">
                 The ultimate platform for discovering amazing restaurants. We bring together the best recommendations from Grab, Google Maps, Instagram, TikTok, and more to help you find incredible dining experiences.
               </p>
             </div>
             
             {/* Contact Info */}
             <div className="space-y-3">
-              <div className="flex items-center space-x-3 text-gray-700">
+              <div className="flex items-center space-x-3 text-gray-800">
                 <Mail className="w-5 h-5 text-orange-500" />
                 <span>hello@34dish.com</span>
               </div>
-              <div className="flex items-center space-x-3 text-gray-700">
+              <div className="flex items-center space-x-3 text-gray-800">
                 <Phone className="w-5 h-5 text-orange-500" />
                 <span>+1 (555) 123-4567</span>
               </div>
-              <div className="flex items-center space-x-3 text-gray-700">
+              <div className="flex items-center space-x-3 text-gray-800">
                 <MapPin className="w-5 h-5 text-orange-500" />
                 <span>Singapore</span>
               </div>

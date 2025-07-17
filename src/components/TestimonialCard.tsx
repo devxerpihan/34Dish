@@ -27,7 +27,7 @@ export default function TestimonialCard({ name, role, avatar, content, rating, h
         </div>
 
         {/* Content */}
-        <p className="text-gray-700 leading-relaxed text-lg">
+        <p className="text-gray-800 leading-relaxed text-lg">
           {content}
         </p>
 
@@ -43,7 +43,7 @@ export default function TestimonialCard({ name, role, avatar, content, rating, h
           </div>
           <div>
             <h4 className="font-semibold text-gray-900">{name}</h4>
-            <p className="text-gray-600 text-sm">{role}</p>
+            <p className="text-gray-700 text-sm">{role}</p>
           </div>
         </div>
       </div>

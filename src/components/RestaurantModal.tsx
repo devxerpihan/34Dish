@@ -122,7 +122,7 @@ export default function RestaurantModal({ restaurant, onClose }: RestaurantModal
                 {/* Description */}
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-3">About</h3>
-                  <p className="text-gray-600 leading-relaxed">{restaurant.description}</p>
+                  <p className="text-gray-700 leading-relaxed">{restaurant.description}</p>
                 </div>
 
                 {/* Platform Integration */}

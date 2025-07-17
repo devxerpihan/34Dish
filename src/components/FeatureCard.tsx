@@ -39,7 +39,7 @@ export default function FeatureCard({ icon: Icon, title, description, gradient, 
           <h3 className="text-2xl font-semibold text-gray-900 leading-tight group-hover:text-orange-600 transition-colors">
             {title}
           </h3>
-          <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors">
+          <p className="text-gray-700 leading-relaxed group-hover:text-gray-800 transition-colors">
             {description}
           </p>
         </div>

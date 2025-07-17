@@ -91,25 +91,25 @@ export default function TestimonialsSection() {
             <div className="text-4xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
               50K+
             </div>
-            <div className="text-gray-600">Happy Food Lovers</div>
+            <div className="text-gray-700">Happy Food Lovers</div>
           </div>
           <div className="space-y-2">
             <div className="text-4xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
               5+
             </div>
-            <div className="text-gray-600">Platforms Combined</div>
+            <div className="text-gray-700">Platforms Combined</div>
           </div>
           <div className="space-y-2">
             <div className="text-4xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
               10K+
             </div>
-            <div className="text-gray-600">Amazing Restaurants</div>
+            <div className="text-gray-700">Amazing Restaurants</div>
           </div>
           <div className="space-y-2">
             <div className="text-4xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
               4.9★
             </div>
-            <div className="text-gray-600">User Satisfaction</div>
+            <div className="text-gray-700">User Satisfaction</div>
           </div>
         </div>
       </div>

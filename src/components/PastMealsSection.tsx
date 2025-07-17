@@ -78,24 +78,24 @@ export default function PastMealsSection() {
   return (
     <div className="bg-white rounded-2xl shadow-xl border border-gray-200/50 overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-green-500 to-emerald-500 px-6 py-4">
-        <div className="flex items-center justify-between">
+      <div className="bg-gradient-to-r from-green-500 to-emerald-500 px-4 sm:px-6 py-3 sm:py-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-              <Apple className="w-5 h-5 text-white" />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/20 rounded-full flex items-center justify-center">
+              <Apple className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </div>
             <div>
-              <h2 className="text-white font-semibold">Past Meals</h2>
-              <p className="text-white/80 text-sm">Track your nutrition with AI analysis</p>
+              <h2 className="text-white font-semibold text-sm sm:text-base">Past Meals</h2>
+              <p className="text-white/80 text-xs sm:text-sm">Track your nutrition with AI analysis</p>
             </div>
           </div>
           
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-1 sm:space-x-2">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setViewMode('daily')}
-              className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-2 sm:px-3 py-1 sm:py-1 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
                 viewMode === 'daily' 
                   ? 'bg-white text-green-600' 
                   : 'text-white/80 hover:text-white'
@@ -107,7 +107,7 @@ export default function PastMealsSection() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setViewMode('monthly')}
-              className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-2 sm:px-3 py-1 sm:py-1 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
                 viewMode === 'monthly' 
                   ? 'bg-white text-green-600' 
                   : 'text-white/80 hover:text-white'
@@ -119,21 +119,21 @@ export default function PastMealsSection() {
         </div>
       </div>
 
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         {/* Upload Section */}
-        <div className="mb-6">
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
+        <div className="mb-4 sm:mb-6">
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 sm:p-6 border border-blue-200">
             <div className="text-center">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Add Your Meal</h3>
-              <p className="text-gray-600 mb-4">Take a photo of your meal for AI nutrition analysis</p>
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">Add Your Meal</h3>
+              <p className="text-sm sm:text-base text-gray-700 mb-4">Take a photo of your meal for AI nutrition analysis</p>
               
-              <div className="flex justify-center space-x-4">
+              <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => fileInputRef.current?.click()}
                   disabled={isUploading || isAnalyzing}
-                  className="flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-xl font-medium disabled:opacity-50"
+                  className="flex items-center justify-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 bg-blue-600 text-white rounded-xl font-medium disabled:opacity-50 text-sm sm:text-base"
                 >
                   {isUploading ? (
                     <>
@@ -156,7 +156,7 @@ export default function PastMealsSection() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center space-x-2 px-6 py-3 bg-green-600 text-white rounded-xl font-medium"
+                  className="flex items-center justify-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 bg-green-600 text-white rounded-xl font-medium text-sm sm:text-base"
                 >
                   <Camera className="w-4 h-4" />
                   <span>Take Photo</span>
@@ -178,14 +178,14 @@ export default function PastMealsSection() {
         </div>
 
         {/* Date Selector */}
-        <div className="mb-6">
-          <div className="flex items-center space-x-4">
-            <Calendar className="w-5 h-5 text-gray-600" />
+        <div className="mb-4 sm:mb-6">
+          <div className="flex items-center space-x-3 sm:space-x-4">
+            <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
             <input
               type="date"
               value={selectedDate.toISOString().split('T')[0]}
               onChange={(e) => setSelectedDate(new Date(e.target.value))}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="flex-1 sm:flex-none px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm sm:text-base"
             />
           </div>
         </div>
@@ -198,41 +198,41 @@ export default function PastMealsSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="space-y-6"
+              className="space-y-4 sm:space-y-6"
             >
               {/* Daily Summary */}
               {dailyMeals.length > 0 && (
-                <div className="bg-gray-50 rounded-xl p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Daily Summary</h3>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="bg-gray-50 rounded-xl p-4 sm:p-6">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Daily Summary</h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-orange-600">{dailyMeals.reduce((sum, meal) => sum + meal.calories, 0)}</div>
-                      <div className="text-sm text-gray-600">Calories</div>
+                      <div className="text-xl sm:text-2xl font-bold text-orange-600">{dailyMeals.reduce((sum, meal) => sum + meal.calories, 0)}</div>
+                      <div className="text-xs sm:text-sm text-gray-700">Calories</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-blue-600">{dailyMeals.reduce((sum, meal) => sum + meal.protein, 0)}g</div>
-                      <div className="text-sm text-gray-600">Protein</div>
+                      <div className="text-xl sm:text-2xl font-bold text-blue-600">{dailyMeals.reduce((sum, meal) => sum + meal.protein, 0)}g</div>
+                      <div className="text-xs sm:text-sm text-gray-700">Protein</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-green-600">{dailyMeals.reduce((sum, meal) => sum + meal.carbs, 0)}g</div>
-                      <div className="text-sm text-gray-600">Carbs</div>
+                      <div className="text-xl sm:text-2xl font-bold text-green-600">{dailyMeals.reduce((sum, meal) => sum + meal.carbs, 0)}g</div>
+                      <div className="text-xs sm:text-sm text-gray-700">Carbs</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-purple-600">{dailyMeals.reduce((sum, meal) => sum + meal.fat, 0)}g</div>
-                      <div className="text-sm text-gray-600">Fat</div>
+                      <div className="text-xl sm:text-2xl font-bold text-purple-600">{dailyMeals.reduce((sum, meal) => sum + meal.fat, 0)}g</div>
+                      <div className="text-xs sm:text-sm text-gray-700">Fat</div>
                     </div>
                   </div>
                 </div>
               )}
 
               {/* Daily Meals */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-900">Today&apos;s Meals</h3>
+              <div className="space-y-3 sm:space-y-4">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900">Today&apos;s Meals</h3>
                 {dailyMeals.length === 0 ? (
-                  <div className="text-center py-8 text-gray-500">
-                    <Apple className="w-12 h-12 mx-auto mb-4 text-gray-300" />
-                    <p>No meals recorded for this date</p>
-                    <p className="text-sm">Upload a photo to get started!</p>
+                  <div className="text-center py-6 sm:py-8 text-gray-500">
+                    <Apple className="w-8 h-8 sm:w-12 sm:h-12 mx-auto mb-3 sm:mb-4 text-gray-300" />
+                    <p className="text-sm sm:text-base">No meals recorded for this date</p>
+                    <p className="text-xs sm:text-sm">Upload a photo to get started!</p>
                   </div>
                 ) : (
                   dailyMeals.map((meal) => (
@@ -240,45 +240,45 @@ export default function PastMealsSection() {
                       key={meal.id}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="bg-gray-50 rounded-xl p-4"
+                      className="bg-gray-50 rounded-xl p-3 sm:p-4"
                     >
-                      <div className="flex items-start space-x-4">
+                      <div className="flex flex-col sm:flex-row sm:items-start space-y-3 sm:space-y-0 sm:space-x-4">
                         <Image 
                           src={meal.image} 
                           alt={meal.name}
                           width={80}
                           height={80}
-                          className="w-20 h-20 rounded-lg object-cover"
+                          className="w-full sm:w-20 h-32 sm:h-20 rounded-lg object-cover"
                         />
-                        <div className="flex-1">
-                          <div className="flex items-center justify-between mb-2">
-                            <h4 className="font-semibold text-gray-900">{meal.name}</h4>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 space-y-1 sm:space-y-0">
+                            <h4 className="font-semibold text-gray-900 text-sm sm:text-base truncate">{meal.name}</h4>
                             <div className="flex items-center space-x-2">
-                              <div className="text-sm font-medium text-green-600 bg-green-100 px-2 py-1 rounded-full">
+                              <div className="text-xs sm:text-sm font-medium text-green-600 bg-green-100 px-2 py-1 rounded-full">
                                 {meal.healthScore}% Health
                               </div>
-                              <span className="text-sm text-gray-500">
+                              <span className="text-xs sm:text-sm text-gray-700">
                                 {meal.date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                               </span>
                             </div>
                           </div>
                           
-                          <div className="grid grid-cols-4 gap-2 mb-3">
+                          <div className="grid grid-cols-4 gap-1 sm:gap-2 mb-3">
                             <div className="text-center">
-                              <div className="text-sm font-medium text-orange-600">{meal.calories}</div>
-                              <div className="text-xs text-gray-500">Cal</div>
+                              <div className="text-xs sm:text-sm font-medium text-orange-600">{meal.calories}</div>
+                              <div className="text-xs text-gray-700">Cal</div>
                             </div>
                             <div className="text-center">
-                              <div className="text-sm font-medium text-blue-600">{meal.protein}g</div>
-                              <div className="text-xs text-gray-500">Protein</div>
+                              <div className="text-xs sm:text-sm font-medium text-blue-600">{meal.protein}g</div>
+                              <div className="text-xs text-gray-700">Protein</div>
                             </div>
                             <div className="text-center">
-                              <div className="text-sm font-medium text-green-600">{meal.carbs}g</div>
-                              <div className="text-xs text-gray-500">Carbs</div>
+                              <div className="text-xs sm:text-sm font-medium text-green-600">{meal.carbs}g</div>
+                              <div className="text-xs text-gray-700">Carbs</div>
                             </div>
                             <div className="text-center">
-                              <div className="text-sm font-medium text-purple-600">{meal.fat}g</div>
-                              <div className="text-xs text-gray-500">Fat</div>
+                              <div className="text-xs sm:text-sm font-medium text-purple-600">{meal.fat}g</div>
+                              <div className="text-xs text-gray-700">Fat</div>
                             </div>
                           </div>
                           
@@ -290,7 +290,7 @@ export default function PastMealsSection() {
                             ))}
                           </div>
                           
-                          <p className="text-sm text-gray-600">{meal.aiAnalysis}</p>
+                          <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">{meal.aiAnalysis}</p>
                         </div>
                       </div>
                     </motion.div>
@@ -304,60 +304,62 @@ export default function PastMealsSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="space-y-6"
+              className="space-y-4 sm:space-y-6"
             >
               {/* Monthly Summary */}
-              <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 border border-purple-200">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Monthly Overview</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+              <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4 sm:p-6 border border-purple-200">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Monthly Overview</h3>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-4 sm:mb-6">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-600">{monthlySummary.totalMeals}</div>
-                    <div className="text-sm text-gray-600">Total Meals</div>
+                    <div className="text-xl sm:text-2xl font-bold text-purple-600">{monthlySummary.totalMeals}</div>
+                    <div className="text-xs sm:text-sm text-gray-700">Total Meals</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-orange-600">{monthlySummary.totalCalories}</div>
-                    <div className="text-sm text-gray-600">Total Calories</div>
+                    <div className="text-xl sm:text-2xl font-bold text-orange-600">{monthlySummary.totalCalories}</div>
+                    <div className="text-xs sm:text-sm text-gray-700">Total Calories</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-blue-600">{monthlySummary.totalProtein}g</div>
-                    <div className="text-sm text-gray-600">Total Protein</div>
+                    <div className="text-xl sm:text-2xl font-bold text-blue-600">{monthlySummary.totalProtein}g</div>
+                    <div className="text-xs sm:text-sm text-gray-700">Total Protein</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-green-600">{monthlySummary.avgHealthScore}%</div>
-                    <div className="text-sm text-gray-600">Avg Health Score</div>
+                    <div className="text-xl sm:text-2xl font-bold text-green-600">{monthlySummary.avgHealthScore}%</div>
+                    <div className="text-xs sm:text-sm text-gray-700">Avg Health Score</div>
                   </div>
                 </div>
                 
                 {/* Nutrition Trends Chart */}
-                <NutritionTrendsChart />
+                <div className="overflow-x-auto">
+                  <NutritionTrendsChart />
+                </div>
               </div>
 
               {/* Monthly Meals Grid */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">All Meals This Month</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">All Meals This Month</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                   {monthlySummary.meals.map((meal) => (
                     <motion.div
                       key={meal.id}
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      className="bg-gray-50 rounded-xl p-4 hover:shadow-md transition-shadow"
+                      className="bg-gray-50 rounded-xl p-3 sm:p-4 hover:shadow-md transition-shadow"
                     >
                       <Image 
                         src={meal.image} 
                         alt={meal.name}
                         width={400}
                         height={128}
-                        className="w-full h-32 rounded-lg object-cover mb-3"
+                        className="w-full h-24 sm:h-32 rounded-lg object-cover mb-2 sm:mb-3"
                       />
-                      <h4 className="font-semibold text-gray-900 mb-2">{meal.name}</h4>
+                      <h4 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base truncate">{meal.name}</h4>
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm text-gray-600">{meal.date.toLocaleDateString()}</span>
-                        <div className="text-sm font-medium text-green-600 bg-green-100 px-2 py-1 rounded-full">
+                        <span className="text-xs sm:text-sm text-gray-700">{meal.date.toLocaleDateString()}</span>
+                        <div className="text-xs sm:text-sm font-medium text-green-600 bg-green-100 px-2 py-1 rounded-full">
                           {meal.healthScore}%
                         </div>
                       </div>
-                      <div className="text-sm text-gray-600">
+                      <div className="text-xs sm:text-sm text-gray-700">
                         {meal.calories} cal • {meal.protein}g protein
                       </div>
                     </motion.div>

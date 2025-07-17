@@ -248,7 +248,7 @@ export default function Dashboard() {
               </div>
               <div className="hidden sm:block">
                 <h1 className="text-lg sm:text-xl font-semibold text-gray-900">34Dish AI</h1>
-                <p className="text-xs sm:text-sm text-gray-500">Your Personal Dining Assistant</p>
+                <p className="text-xs sm:text-sm text-gray-700">Your Personal Dining Assistant</p>
               </div>
               <div className="sm:hidden">
                 <h1 className="text-lg font-semibold text-gray-900">34Dish AI</h1>
@@ -433,7 +433,7 @@ export default function Dashboard() {
                           }`}>
                             <p className="text-xs sm:text-sm leading-relaxed">{message.content}</p>
                             <p className={`text-xs mt-1 sm:mt-2 ${
-                              message.type === 'user' ? 'text-white/70' : 'text-gray-500'
+                              message.type === 'user' ? 'text-white/80' : 'text-gray-700'
                             }`}>
                               {message.timestamp.toLocaleTimeString()}
                             </p>
@@ -477,7 +477,7 @@ export default function Dashboard() {
                               </div>
                               <div className="flex-1 min-w-0">
                                 <p className="text-xs sm:text-sm font-medium text-gray-900 truncate">{step.title}</p>
-                                <p className="text-xs text-gray-500 truncate">{step.description}</p>
+                                <p className="text-xs text-gray-700 truncate">{step.description}</p>
                               </div>
                             </motion.div>
                           ))}
@@ -519,19 +519,19 @@ export default function Dashboard() {
                   <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Your Preferences</h3>
                   <div className="space-y-2 sm:space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs sm:text-sm text-gray-600">Dietary Focus</span>
+                      <span className="text-xs sm:text-sm text-gray-700">Dietary Focus</span>
                       <span className="text-xs sm:text-sm font-medium text-gray-900">{preferences?.dietaryPreferences[0] || 'Not set'}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-xs sm:text-sm text-gray-600">Budget Range</span>
+                      <span className="text-xs sm:text-sm text-gray-700">Budget Range</span>
                       <span className="text-xs sm:text-sm font-medium text-gray-900">SGD {preferences?.priceRange.min}-{preferences?.priceRange.max}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-xs sm:text-sm text-gray-600">Walking Distance</span>
+                      <span className="text-xs sm:text-sm text-gray-700">Walking Distance</span>
                       <span className="text-xs sm:text-sm font-medium text-gray-900">{preferences?.location.radius} km</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-xs sm:text-sm text-gray-600">Health Priority</span>
+                      <span className="text-xs sm:text-sm text-gray-700">Health Priority</span>
                       <span className="text-xs sm:text-sm font-medium text-gray-900">{preferences?.healthFocus[0] || 'Not set'}</span>
                     </div>
                   </div>
@@ -565,12 +565,12 @@ export default function Dashboard() {
                               <div className="flex items-center space-x-2 mt-1">
                                 <div className="flex items-center space-x-1">
                                   <Star className="w-3 h-3 text-yellow-500 fill-current" />
-                                  <span className="text-xs text-gray-600">{restaurant.rating}</span>
+                                  <span className="text-xs text-gray-700">{restaurant.rating}</span>
                                 </div>
                                 <span className="text-xs text-gray-500">•</span>
-                                <span className="text-xs text-gray-600">{restaurant.distance}</span>
+                                <span className="text-xs text-gray-700">{restaurant.distance}</span>
                                 <span className="text-xs text-gray-500">•</span>
-                                <span className="text-xs text-gray-600">{restaurant.price}</span>
+                                <span className="text-xs text-gray-700">{restaurant.price}</span>
                               </div>
                             </div>
                             <div className="text-right flex-shrink-0">

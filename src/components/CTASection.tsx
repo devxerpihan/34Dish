@@ -29,7 +29,7 @@ export default function CTASection() {
             Ready to Stop
             <span className="block">Wasting Time?</span>
           </h2>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-white/95 max-w-3xl mx-auto leading-relaxed">
             Get personalized restaurant recommendations based on your dietary preferences, fitness goals, and budget. Walk to your perfect meal in minutes.
           </p>
         </div>
