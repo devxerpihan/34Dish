@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Search, ArrowRight, Heart, Zap, MapPin, Star, TrendingUp, Instagram, Globe, Smartphone, Play, X, Clock, Target, Users } from "lucide-react";
-import Image from "next/image";
+import { Search, Heart, MapPin, Star, Play, X, Clock, Target, Users } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const DEMO_RESTAURANTS = [

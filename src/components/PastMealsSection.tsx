@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Camera, Upload, Calendar, BarChart3, Apple, Target, TrendingUp, Clock, Zap, Heart, Scale, Flame } from 'lucide-react';
+import { Camera, Upload, Calendar, Apple } from 'lucide-react';
 import { mockMeals, getMealsForDate, getMonthlySummary } from '../data/mockMeals';
 import NutritionTrendsChart from './NutritionTrendsChart';
 

@@ -1,4 +1,4 @@
-import { Heart, Search, Utensils, Target, Clock } from "lucide-react";
+import { Search, Target, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 
 const steps = [

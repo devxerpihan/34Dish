@@ -1,4 +1,4 @@
-import { DollarSign, TrendingUp, Heart, Utensils, MapPin, Sparkles, Target, Clock } from "lucide-react";
+import { DollarSign, Heart, MapPin, Sparkles, Target, Clock } from "lucide-react";
 import FeatureCard from "./FeatureCard";
 import { motion } from "framer-motion";
 

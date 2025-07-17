@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Settings, Heart, MapPin, Clock, Star, Car, MessageCircle, Sparkles, CheckCircle, Search, Filter, Users, TrendingUp, LogOut, Apple, Brain } from 'lucide-react';
+import { Send, Settings, Heart, MapPin, Star, Car, Sparkles, CheckCircle, Search, TrendingUp, LogOut, Apple, Brain } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import PreferencesModal from './PreferencesModal';
 import RestaurantModal from './RestaurantModal';

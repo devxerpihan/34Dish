@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Save, User, MapPin, DollarSign, Heart, Target, Activity, Instagram, Globe, Smartphone, TrendingUp, Settings, Plus, Trash2, CheckCircle, Sparkles } from 'lucide-react';
+import { X, Save, MapPin, DollarSign, Heart, Target, Activity, Instagram, Globe, TrendingUp, Settings, Plus, Trash2, CheckCircle, Sparkles } from 'lucide-react';
 
 interface UserPreferences {
   dietaryPreferences: string[];

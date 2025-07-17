@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Star, MapPin, Clock, DollarSign, Heart, Car, Users, Instagram, MessageCircle, ExternalLink, Phone, Globe } from 'lucide-react';
+import { X, Star, MapPin, Clock, DollarSign, Heart, Car, Users, Instagram, Phone, Globe } from 'lucide-react';
 
 interface RestaurantModalProps {
   restaurant: any;

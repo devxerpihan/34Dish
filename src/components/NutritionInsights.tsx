@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Brain, Target, TrendingUp, AlertTriangle, CheckCircle, Lightbulb, Zap, Heart, Scale } from 'lucide-react';
+import { Brain, Target, TrendingUp, Lightbulb, Zap, Heart, Scale } from 'lucide-react';
 import { mockInsights, mockRecommendations, getNutritionScore } from '../data/mockMeals';
 
 interface NutritionInsight {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { Heart, Star, Utensils, Target, Clock, MapPin } from "lucide-react";
+import { Target, Clock, MapPin } from "lucide-react";
 import LoginModal from './LoginModal';
 
 export default function CTASection() {
