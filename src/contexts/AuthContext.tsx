@@ -7,6 +7,12 @@ interface User {
   email: string;
   name: string;
   preferences: {
+    // Basic Profile Information
+    height?: number; // in cm
+    weight?: number; // in kg
+    birthDate?: string; // ISO date string
+    gender?: 'male' | 'female' | 'other' | 'prefer-not-to-say';
+    
     dietaryPreferences: string[];
     fitnessGoals: string[];
     priceRange: {
@@ -69,6 +75,12 @@ const HARDCODED_USER: User = {
   email: 'demo@34dish.com',
   name: 'Demo User',
   preferences: {
+    // Basic Profile Information
+    height: 175,
+    weight: 70,
+    birthDate: '1990-01-01',
+    gender: 'male' as const,
+    
     dietaryPreferences: ['High-Protein', 'Low-Calorie', 'Fitness'],
     fitnessGoals: ['Muscle Building', 'Weight Loss'],
     priceRange: {

@@ -5,6 +5,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Save, MapPin, DollarSign, Heart, Target, Activity, Instagram, Globe, TrendingUp, Settings, Plus, Trash2, CheckCircle, Sparkles } from 'lucide-react';
 
 interface UserPreferences {
+  // Basic Profile Information
+  height?: number; // in cm
+  weight?: number; // in kg
+  birthDate?: string; // ISO date string
+  gender?: 'male' | 'female' | 'other' | 'prefer-not-to-say';
+  
   dietaryPreferences: string[];
   fitnessGoals: string[];
   priceRange: {
@@ -108,6 +114,23 @@ export default function PreferencesModal({ isOpen, onClose, preferences, onSave 
   const [newHealthFocus, setNewHealthFocus] = useState('');
   const [activeTab, setActiveTab] = useState<'basic' | 'platforms' | 'social'>('basic');
   const [isSaving, setIsSaving] = useState(false);
+
+  // Helper functions for basic profile information
+  const updateHeight = (height: number) => {
+    setLocalPreferences(prev => ({ ...prev, height }));
+  };
+
+  const updateWeight = (weight: number) => {
+    setLocalPreferences(prev => ({ ...prev, weight }));
+  };
+
+  const updateBirthDate = (birthDate: string) => {
+    setLocalPreferences(prev => ({ ...prev, birthDate }));
+  };
+
+  const updateGender = (gender: UserPreferences['gender']) => {
+    setLocalPreferences(prev => ({ ...prev, gender }));
+  };
 
   if (!isOpen) return null;
 
@@ -270,6 +293,97 @@ export default function PreferencesModal({ isOpen, onClose, preferences, onSave 
                     exit={{ opacity: 0, x: -20 }}
                     className="space-y-4 sm:space-y-8"
                   >
+                    {/* Basic Profile Information */}
+                    <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-4 sm:p-6">
+                      <div className="flex items-center space-x-3 mb-4 sm:mb-6">
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-indigo-500 rounded-xl flex items-center justify-center">
+                          <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="text-lg sm:text-xl font-semibold text-gray-900">Basic Profile</h3>
+                          <p className="text-gray-700 text-xs sm:text-sm">Essential information for personalized recommendations</p>
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                        {/* Height */}
+                        <div>
+                          <label className="block text-sm font-medium text-gray-800 mb-2">Height (cm)</label>
+                          <input
+                            type="number"
+                            value={localPreferences.height || ''}
+                            onChange={(e) => updateHeight(Number(e.target.value))}
+                            placeholder="170"
+                            min="100"
+                            max="250"
+                            className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm"
+                          />
+                        </div>
+
+                        {/* Weight */}
+                        <div>
+                          <label className="block text-sm font-medium text-gray-800 mb-2">Weight (kg)</label>
+                          <input
+                            type="number"
+                            value={localPreferences.weight || ''}
+                            onChange={(e) => updateWeight(Number(e.target.value))}
+                            placeholder="70"
+                            min="30"
+                            max="300"
+                            className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm"
+                          />
+                        </div>
+
+                        {/* Birth Date */}
+                        <div>
+                          <label className="block text-sm font-medium text-gray-800 mb-2">Birth Date</label>
+                          <input
+                            type="date"
+                            value={localPreferences.birthDate || ''}
+                            onChange={(e) => updateBirthDate(e.target.value)}
+                            className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm"
+                          />
+                        </div>
+
+                        {/* Gender */}
+                        <div>
+                          <label className="block text-sm font-medium text-gray-800 mb-2">Gender</label>
+                          <select
+                            value={localPreferences.gender || ''}
+                            onChange={(e) => updateGender(e.target.value as UserPreferences['gender'])}
+                            className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm"
+                          >
+                            <option value="">Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                            <option value="prefer-not-to-say">Prefer not to say</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      {/* BMI Display */}
+                      {localPreferences.height && localPreferences.weight && (
+                        <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-white rounded-xl border border-gray-200">
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-medium text-gray-800">BMI:</span>
+                            <span className="text-sm font-semibold text-gray-900">
+                              {((localPreferences.weight / Math.pow(localPreferences.height / 100, 2))).toFixed(1)}
+                            </span>
+                            <span className="text-xs text-gray-600">
+                              {(() => {
+                                const bmi = localPreferences.weight / Math.pow(localPreferences.height / 100, 2);
+                                if (bmi < 18.5) return 'Underweight';
+                                if (bmi < 25) return 'Normal';
+                                if (bmi < 30) return 'Overweight';
+                                return 'Obese';
+                              })()}
+                            </span>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
                     {/* Dietary Preferences */}
                     <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-4 sm:p-6">
                       <div className="flex items-center space-x-3 mb-4 sm:mb-6">

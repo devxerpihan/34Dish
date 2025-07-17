@@ -13,6 +13,12 @@ import Image from 'next/image';
 // Import the hardcoded user for fallback
 const HARDCODED_USER = {
   preferences: {
+    // Basic Profile Information
+    height: 175,
+    weight: 70,
+    birthDate: '1990-01-01',
+    gender: 'male' as const,
+    
     dietaryPreferences: ['High-Protein', 'Low-Calorie', 'Fitness'],
     fitnessGoals: ['Muscle Building', 'Weight Loss'],
     priceRange: { min: 15, max: 50, currency: 'SGD' },
