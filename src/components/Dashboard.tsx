@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Settings, Heart, MapPin, Star, Car, Sparkles, CheckCircle, Search, TrendingUp, LogOut, Apple, Brain, LucideIcon } from 'lucide-react';
+import { Send, Settings, Heart, MapPin, Star, Car, Sparkles, CheckCircle, Search, TrendingUp, LogOut, Apple, Brain, LucideIcon, Menu, X } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import PreferencesModal from './PreferencesModal';
 import RestaurantModal from './RestaurantModal';
@@ -82,6 +82,7 @@ export default function Dashboard() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchSteps, setSearchSteps] = useState<SearchStep[]>([]);
   const [recommendations, setRecommendations] = useState<RestaurantRecommendation[]>([]);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleSendMessage = async () => {
     if (!inputMessage.trim()) return;
@@ -239,24 +240,28 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold text-lg">34</span>
+            <div className="flex items-center space-x-3 sm:space-x-4">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center">
+                <span className="text-white font-bold text-sm sm:text-lg">34</span>
               </div>
-              <div>
-                <h1 className="text-xl font-semibold text-gray-900">34Dish AI</h1>
-                <p className="text-sm text-gray-500">Your Personal Dining Assistant</p>
+              <div className="hidden sm:block">
+                <h1 className="text-lg sm:text-xl font-semibold text-gray-900">34Dish AI</h1>
+                <p className="text-xs sm:text-sm text-gray-500">Your Personal Dining Assistant</p>
+              </div>
+              <div className="sm:hidden">
+                <h1 className="text-lg font-semibold text-gray-900">34Dish AI</h1>
               </div>
             </div>
             
-            <div className="flex items-center space-x-4">
+            {/* Desktop Header Actions */}
+            <div className="hidden md:flex items-center space-x-3 lg:space-x-4">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setShowPreferences(true)}
-                className="flex items-center space-x-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+                className="flex items-center space-x-2 px-3 sm:px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
               >
                 <Settings className="w-4 h-4" />
                 <span className="text-sm font-medium">Preferences</span>
@@ -266,7 +271,7 @@ export default function Dashboard() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={logout}
-                className="flex items-center space-x-2 px-4 py-2 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
+                className="flex items-center space-x-2 px-3 sm:px-4 py-2 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
               >
                 <LogOut className="w-4 h-4 text-red-600" />
                 <span className="text-sm font-medium text-red-600">Logout</span>
@@ -277,53 +282,111 @@ export default function Dashboard() {
                 <span className="text-sm text-green-700 font-medium">AI Online</span>
               </div>
             </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="w-5 h-5 text-gray-600" />
+                ) : (
+                  <Menu className="w-5 h-5 text-gray-600" />
+                )}
+              </motion.button>
+            </div>
           </div>
+
+          {/* Mobile Menu */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="md:hidden mt-4 pb-4 border-t border-gray-200"
+              >
+                <div className="flex flex-col space-y-3 pt-4">
+                  <motion.button
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => {
+                      setShowPreferences(true);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="flex items-center space-x-3 px-4 py-3 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+                  >
+                    <Settings className="w-4 h-4" />
+                    <span className="text-sm font-medium">Preferences</span>
+                  </motion.button>
+                  
+                  <motion.button
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => {
+                      logout();
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="flex items-center space-x-3 px-4 py-3 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
+                  >
+                    <LogOut className="w-4 h-4 text-red-600" />
+                    <span className="text-sm font-medium text-red-600">Logout</span>
+                  </motion.button>
+                  
+                  <div className="flex items-center space-x-3 px-4 py-3 bg-green-50 rounded-lg">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span className="text-sm text-green-700 font-medium">AI Online</span>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8">
         {/* Tab Navigation */}
-        <div className="flex items-center space-x-1 bg-gray-100 rounded-xl p-1 mb-8">
+        <div className="flex items-center space-x-1 bg-gray-100 rounded-xl p-1 mb-6 sm:mb-8 overflow-x-auto scrollbar-hide">
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => setActiveTab('chat')}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all ${
+            className={`flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap ${
               activeTab === 'chat' 
                 ? 'bg-white text-orange-600 shadow-sm' 
                 : 'text-gray-600 hover:text-gray-900'
             }`}
           >
             <Sparkles className="w-4 h-4" />
-            <span>AI Assistant</span>
+            <span className="text-sm sm:text-base">AI Assistant</span>
           </motion.button>
           
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => setActiveTab('meals')}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all ${
+            className={`flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap ${
               activeTab === 'meals' 
                 ? 'bg-white text-orange-600 shadow-sm' 
                 : 'text-gray-600 hover:text-gray-900'
             }`}
           >
             <Apple className="w-4 h-4" />
-            <span>Past Meals</span>
+            <span className="text-sm sm:text-base">Past Meals</span>
           </motion.button>
           
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => setActiveTab('insights')}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all ${
+            className={`flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap ${
               activeTab === 'insights' 
                 ? 'bg-white text-orange-600 shadow-sm' 
                 : 'text-gray-600 hover:text-gray-900'
             }`}
           >
             <Brain className="w-4 h-4" />
-            <span>Nutrition Insights</span>
+            <span className="text-sm sm:text-base">Nutrition Insights</span>
           </motion.button>
         </div>
 
@@ -334,261 +397,261 @@ export default function Dashboard() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="grid lg:grid-cols-3 gap-8"
+              className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
             >
               {/* Chat Interface */}
-              <div className="lg:col-span-2">
+              <div className="lg:col-span-2 order-1 lg:order-1">
                 <div className="bg-white rounded-2xl shadow-xl border border-gray-200/50 overflow-hidden">
                   {/* Chat Header */}
-                  <div className="bg-gradient-to-r from-orange-500 to-red-500 px-6 py-4">
+                  <div className="bg-gradient-to-r from-orange-500 to-red-500 px-4 sm:px-6 py-3 sm:py-4">
                     <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                        <Sparkles className="w-5 h-5 text-white" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/20 rounded-full flex items-center justify-center">
+                        <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                       </div>
                       <div>
-                        <h2 className="text-white font-semibold">AI Assistant</h2>
-                        <p className="text-white/80 text-sm">Ready to help you find the perfect meal</p>
+                        <h2 className="text-white font-semibold text-sm sm:text-base">AI Assistant</h2>
+                        <p className="text-white/80 text-xs sm:text-sm">Ready to help you find the perfect meal</p>
                       </div>
                     </div>
                   </div>
 
-              {/* Messages */}
-              <div className="h-96 overflow-y-auto p-6 space-y-4">
-                <AnimatePresence>
-                  {messages.map((message) => (
-                    <motion.div
-                      key={message.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
-                    >
-                      <div className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl ${
-                        message.type === 'user' 
-                          ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white' 
-                          : 'bg-gray-100 text-gray-800'
-                      }`}>
-                        <p className="text-sm leading-relaxed">{message.content}</p>
-                        <p className={`text-xs mt-2 ${
-                          message.type === 'user' ? 'text-white/70' : 'text-gray-500'
-                        }`}>
-                          {message.timestamp.toLocaleTimeString()}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-
-                {/* Search Steps */}
-                {isSearching && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="bg-blue-50 rounded-2xl p-6"
-                  >
-                    <div className="flex items-center space-x-3 mb-4">
-                      <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
-                        <Search className="w-4 h-4 text-white" />
-                      </div>
-                      <h3 className="font-semibold text-gray-900">Searching for your perfect match...</h3>
-                    </div>
-                    
-                    <div className="space-y-3">
-                      {searchSteps.map((step) => (
+                  {/* Messages */}
+                  <div className="h-64 sm:h-80 lg:h-96 overflow-y-auto p-4 sm:p-6 space-y-3 sm:space-y-4">
+                    <AnimatePresence>
+                      {messages.map((message) => (
                         <motion.div
-                          key={step.id}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          className="flex items-center space-x-3"
+                          key={message.id}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -20 }}
+                          className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
                         >
-                          <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
-                            step.status === 'completed' ? 'bg-green-500' :
-                            step.status === 'active' ? 'bg-blue-500 animate-pulse' :
-                            'bg-gray-300'
+                          <div className={`max-w-[85%] sm:max-w-xs lg:max-w-md px-3 sm:px-4 py-2 sm:py-3 rounded-2xl ${
+                            message.type === 'user' 
+                              ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white' 
+                              : 'bg-gray-100 text-gray-800'
                           }`}>
-                            {step.status === 'completed' ? (
-                              <CheckCircle className="w-4 h-4 text-white" />
-                            ) : (
-                              <step.icon className="w-3 h-3 text-white" />
-                            )}
+                            <p className="text-xs sm:text-sm leading-relaxed">{message.content}</p>
+                            <p className={`text-xs mt-1 sm:mt-2 ${
+                              message.type === 'user' ? 'text-white/70' : 'text-gray-500'
+                            }`}>
+                              {message.timestamp.toLocaleTimeString()}
+                            </p>
                           </div>
-                          <div className="flex-1">
-                            <p className="text-sm font-medium text-gray-900">{step.title}</p>
-                            <p className="text-xs text-gray-500">{step.description}</p>
+                        </motion.div>
+                      ))}
+                    </AnimatePresence>
+
+                    {/* Search Steps */}
+                    {isSearching && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-blue-50 rounded-2xl p-4 sm:p-6"
+                      >
+                        <div className="flex items-center space-x-3 mb-3 sm:mb-4">
+                          <div className="w-6 h-6 sm:w-8 sm:h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                            <Search className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                          </div>
+                          <h3 className="font-semibold text-gray-900 text-sm sm:text-base">Searching for your perfect match...</h3>
+                        </div>
+                        
+                        <div className="space-y-2 sm:space-y-3">
+                          {searchSteps.map((step) => (
+                            <motion.div
+                              key={step.id}
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              className="flex items-center space-x-3"
+                            >
+                              <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center ${
+                                step.status === 'completed' ? 'bg-green-500' :
+                                step.status === 'active' ? 'bg-blue-500 animate-pulse' :
+                                'bg-gray-300'
+                              }`}>
+                                {step.status === 'completed' ? (
+                                  <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                                ) : (
+                                  <step.icon className="w-2 h-2 sm:w-3 sm:h-3 text-white" />
+                                )}
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <p className="text-xs sm:text-sm font-medium text-gray-900 truncate">{step.title}</p>
+                                <p className="text-xs text-gray-500 truncate">{step.description}</p>
+                              </div>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </div>
+
+                  {/* Input */}
+                  <div className="border-t border-gray-200 p-3 sm:p-4">
+                    <div className="flex space-x-2 sm:space-x-3">
+                      <input
+                        type="text"
+                        value={inputMessage}
+                        onChange={(e) => setInputMessage(e.target.value)}
+                        onKeyPress={handleKeyPress}
+                        placeholder="Tell me what you're craving..."
+                        className="flex-1 px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
+                        disabled={isSearching}
+                      />
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={handleSendMessage}
+                        disabled={!inputMessage.trim() || isSearching}
+                        className="px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-xl font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <Send className="w-4 h-4 sm:w-5 sm:h-5" />
+                      </motion.button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Recommendations Panel */}
+              <div className="space-y-4 sm:space-y-6 order-2 lg:order-2">
+                {/* User Preferences Summary */}
+                <div className="bg-white rounded-2xl shadow-xl border border-gray-200/50 p-4 sm:p-6">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Your Preferences</h3>
+                  <div className="space-y-2 sm:space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs sm:text-sm text-gray-600">Dietary Focus</span>
+                      <span className="text-xs sm:text-sm font-medium text-gray-900">{preferences?.dietaryPreferences[0] || 'Not set'}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs sm:text-sm text-gray-600">Budget Range</span>
+                      <span className="text-xs sm:text-sm font-medium text-gray-900">SGD {preferences?.priceRange.min}-{preferences?.priceRange.max}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs sm:text-sm text-gray-600">Walking Distance</span>
+                      <span className="text-xs sm:text-sm font-medium text-gray-900">{preferences?.location.radius} km</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs sm:text-sm text-gray-600">Health Priority</span>
+                      <span className="text-xs sm:text-sm font-medium text-gray-900">{preferences?.healthFocus[0] || 'Not set'}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Recommendations */}
+                {recommendations.length > 0 && (
+                  <div className="bg-white rounded-2xl shadow-xl border border-gray-200/50 p-4 sm:p-6">
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">AI Recommendations</h3>
+                    <div className="space-y-3 sm:space-y-4">
+                      {recommendations.map((restaurant) => (
+                        <motion.div
+                          key={restaurant.id}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          whileHover={{ scale: 1.02 }}
+                          onClick={() => setSelectedRestaurant(restaurant)}
+                          className="bg-gray-50 rounded-xl p-3 sm:p-4 cursor-pointer transition-all hover:shadow-md"
+                        >
+                          <div className="flex items-start space-x-3">
+                            <Image 
+                              src={restaurant.image} 
+                              alt={restaurant.name}
+                              width={48}
+                              height={48}
+                              className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg object-cover flex-shrink-0"
+                            />
+                            <div className="flex-1 min-w-0">
+                              <h4 className="font-semibold text-gray-900 truncate text-sm sm:text-base">{restaurant.name}</h4>
+                              <p className="text-xs sm:text-sm text-gray-600">{restaurant.cuisine}</p>
+                              <div className="flex items-center space-x-2 mt-1">
+                                <div className="flex items-center space-x-1">
+                                  <Star className="w-3 h-3 text-yellow-500 fill-current" />
+                                  <span className="text-xs text-gray-600">{restaurant.rating}</span>
+                                </div>
+                                <span className="text-xs text-gray-500">•</span>
+                                <span className="text-xs text-gray-600">{restaurant.distance}</span>
+                                <span className="text-xs text-gray-500">•</span>
+                                <span className="text-xs text-gray-600">{restaurant.price}</span>
+                              </div>
+                            </div>
+                            <div className="text-right flex-shrink-0">
+                              <div className="text-xs font-medium text-green-600 bg-green-100 px-2 py-1 rounded-full">
+                                {restaurant.healthScore}% Health
+                              </div>
+                            </div>
                           </div>
                         </motion.div>
                       ))}
                     </div>
-                  </motion.div>
+                  </div>
                 )}
-              </div>
 
-              {/* Input */}
-              <div className="border-t border-gray-200 p-4">
-                <div className="flex space-x-3">
-                  <input
-                    type="text"
-                    value={inputMessage}
-                    onChange={(e) => setInputMessage(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                    placeholder="Tell me what you're craving or ask for recommendations..."
-                    className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                    disabled={isSearching}
-                  />
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={handleSendMessage}
-                    disabled={!inputMessage.trim() || isSearching}
-                    className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-xl font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    <Send className="w-5 h-5" />
-                  </motion.button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Recommendations Panel */}
-          <div className="space-y-6">
-            {/* User Preferences Summary */}
-            <div className="bg-white rounded-2xl shadow-xl border border-gray-200/50 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Your Preferences</h3>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Dietary Focus</span>
-                  <span className="text-sm font-medium text-gray-900">{preferences?.dietaryPreferences[0] || 'Not set'}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Budget Range</span>
-                  <span className="text-sm font-medium text-gray-900">SGD {preferences?.priceRange.min}-{preferences?.priceRange.max}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Walking Distance</span>
-                  <span className="text-sm font-medium text-gray-900">{preferences?.location.radius} km</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Health Priority</span>
-                  <span className="text-sm font-medium text-gray-900">{preferences?.healthFocus[0] || 'Not set'}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Recommendations */}
-            {recommendations.length > 0 && (
-              <div className="bg-white rounded-2xl shadow-xl border border-gray-200/50 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">AI Recommendations</h3>
-                <div className="space-y-4">
-                  {recommendations.map((restaurant) => (
-                    <motion.div
-                      key={restaurant.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
+                {/* Quick Actions */}
+                <div className="bg-white rounded-2xl shadow-xl border border-gray-200/50 p-4 sm:p-6">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Quick Actions</h3>
+                  <div className="space-y-2 sm:space-y-3">
+                    <motion.button
                       whileHover={{ scale: 1.02 }}
-                      onClick={() => setSelectedRestaurant(restaurant)}
-                      className="bg-gray-50 rounded-xl p-4 cursor-pointer transition-all hover:shadow-md"
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => setInputMessage("Show me healthy options")}
+                      className="w-full text-left p-3 bg-green-50 hover:bg-green-100 rounded-xl transition-colors"
                     >
-                      <div className="flex items-start space-x-3">
-                        <Image 
-                          src={restaurant.image} 
-                          alt={restaurant.name}
-                          width={64}
-                          height={64}
-                          className="w-16 h-16 rounded-lg object-cover"
-                        />
-                        <div className="flex-1 min-w-0">
-                          <h4 className="font-semibold text-gray-900 truncate">{restaurant.name}</h4>
-                          <p className="text-sm text-gray-600">{restaurant.cuisine}</p>
-                          <div className="flex items-center space-x-2 mt-1">
-                            <div className="flex items-center space-x-1">
-                              <Star className="w-3 h-3 text-yellow-500 fill-current" />
-                              <span className="text-xs text-gray-600">{restaurant.rating}</span>
-                            </div>
-                            <span className="text-xs text-gray-500">•</span>
-                            <span className="text-xs text-gray-600">{restaurant.distance}</span>
-                            <span className="text-xs text-gray-500">•</span>
-                            <span className="text-xs text-gray-600">{restaurant.price}</span>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-xs font-medium text-green-600 bg-green-100 px-2 py-1 rounded-full">
-                            {restaurant.healthScore}% Health
-                          </div>
-                        </div>
+                      <div className="flex items-center space-x-3">
+                        <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
+                        <span className="text-xs sm:text-sm font-medium text-gray-900">Find Healthy Options</span>
                       </div>
-                    </motion.div>
-                  ))}
+                    </motion.button>
+                    
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => setInputMessage("What's popular nearby?")}
+                      className="w-full text-left p-3 bg-blue-50 hover:bg-blue-100 rounded-xl transition-colors"
+                    >
+                      <div className="flex items-center space-x-3">
+                        <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+                        <span className="text-xs sm:text-sm font-medium text-gray-900">Popular Nearby</span>
+                      </div>
+                    </motion.button>
+                    
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => setInputMessage("I need a ride")}
+                      className="w-full text-left p-3 bg-purple-50 hover:bg-purple-100 rounded-xl transition-colors"
+                    >
+                      <div className="flex items-center space-x-3">
+                        <Car className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
+                        <span className="text-xs sm:text-sm font-medium text-gray-900">Book a Ride</span>
+                      </div>
+                    </motion.button>
+                    
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => setActiveTab('meals')}
+                      className="w-full text-left p-3 bg-orange-50 hover:bg-orange-100 rounded-xl transition-colors"
+                    >
+                      <div className="flex items-center space-x-3">
+                        <Apple className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600" />
+                        <span className="text-xs sm:text-sm font-medium text-gray-900">Track My Meal</span>
+                      </div>
+                    </motion.button>
+                    
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => setActiveTab('insights')}
+                      className="w-full text-left p-3 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition-colors"
+                    >
+                      <div className="flex items-center space-x-3">
+                        <Brain className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600" />
+                        <span className="text-xs sm:text-sm font-medium text-gray-900">View Insights</span>
+                      </div>
+                    </motion.button>
+                  </div>
                 </div>
               </div>
-            )}
-
-            {/* Quick Actions */}
-            <div className="bg-white rounded-2xl shadow-xl border border-gray-200/50 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
-              <div className="space-y-3">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => setInputMessage("Show me healthy options")}
-                  className="w-full text-left p-3 bg-green-50 hover:bg-green-100 rounded-xl transition-colors"
-                >
-                  <div className="flex items-center space-x-3">
-                    <Heart className="w-5 h-5 text-green-600" />
-                    <span className="text-sm font-medium text-gray-900">Find Healthy Options</span>
-                  </div>
-                </motion.button>
-                
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => setInputMessage("What's popular nearby?")}
-                  className="w-full text-left p-3 bg-blue-50 hover:bg-blue-100 rounded-xl transition-colors"
-                >
-                  <div className="flex items-center space-x-3">
-                    <TrendingUp className="w-5 h-5 text-blue-600" />
-                    <span className="text-sm font-medium text-gray-900">Popular Nearby</span>
-                  </div>
-                </motion.button>
-                
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => setInputMessage("I need a ride")}
-                  className="w-full text-left p-3 bg-purple-50 hover:bg-purple-100 rounded-xl transition-colors"
-                >
-                  <div className="flex items-center space-x-3">
-                    <Car className="w-5 h-5 text-purple-600" />
-                    <span className="text-sm font-medium text-gray-900">Book a Ride</span>
-                  </div>
-                </motion.button>
-                
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => setActiveTab('meals')}
-                  className="w-full text-left p-3 bg-orange-50 hover:bg-orange-100 rounded-xl transition-colors"
-                >
-                  <div className="flex items-center space-x-3">
-                    <Apple className="w-5 h-5 text-orange-600" />
-                    <span className="text-sm font-medium text-gray-900">Track My Meal</span>
-                  </div>
-                </motion.button>
-                
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => setActiveTab('insights')}
-                  className="w-full text-left p-3 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition-colors"
-                >
-                  <div className="flex items-center space-x-3">
-                    <Brain className="w-5 h-5 text-indigo-600" />
-                    <span className="text-sm font-medium text-gray-900">View Insights</span>
-                  </div>
-                </motion.button>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+            </motion.div>
           )}
 
           {activeTab === 'meals' && (

@@ -74,3 +74,41 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--foreground);
 }
+
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 640px) {
+  /* Improve touch targets */
+  button, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Better text readability on mobile */
+  .text-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+  
+  /* Improve spacing on mobile */
+  .space-y-2 > * + * {
+    margin-top: 0.5rem;
+  }
+  
+  .space-y-3 > * + * {
+    margin-top: 0.75rem;
+  }
+  
+  .space-y-4 > * + * {
+    margin-top: 1rem;
+  }
+}
