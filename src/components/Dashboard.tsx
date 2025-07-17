@@ -263,8 +263,8 @@ export default function Dashboard() {
                 onClick={() => setShowPreferences(true)}
                 className="flex items-center space-x-2 px-3 sm:px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
               >
-                <Settings className="w-4 h-4" />
-                <span className="text-sm font-medium">Preferences</span>
+                <Settings className="w-4 h-4 text-gray-700" />
+                <span className="text-sm font-medium text-gray-900">Preferences</span>
               </motion.button>
               
               <motion.button
@@ -317,8 +317,8 @@ export default function Dashboard() {
                     }}
                     className="flex items-center space-x-3 px-4 py-3 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
                   >
-                    <Settings className="w-4 h-4" />
-                    <span className="text-sm font-medium">Preferences</span>
+                    <Settings className="w-4 h-4 text-gray-700" />
+                    <span className="text-sm font-medium text-gray-900">Preferences</span>
                   </motion.button>
                   
                   <motion.button
