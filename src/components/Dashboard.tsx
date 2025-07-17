@@ -519,19 +519,19 @@ export default function Dashboard() {
                   <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Your Preferences</h3>
                   <div className="space-y-2 sm:space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs sm:text-sm text-gray-700">Dietary Focus</span>
+                      <span className="text-xs sm:text-sm text-gray-800 font-medium">Dietary Focus</span>
                       <span className="text-xs sm:text-sm font-medium text-gray-900">{preferences?.dietaryPreferences[0] || 'Not set'}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-xs sm:text-sm text-gray-700">Budget Range</span>
+                      <span className="text-xs sm:text-sm text-gray-800 font-medium">Budget Range</span>
                       <span className="text-xs sm:text-sm font-medium text-gray-900">SGD {preferences?.priceRange.min}-{preferences?.priceRange.max}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-xs sm:text-sm text-gray-700">Walking Distance</span>
+                      <span className="text-xs sm:text-sm text-gray-800 font-medium">Walking Distance</span>
                       <span className="text-xs sm:text-sm font-medium text-gray-900">{preferences?.location.radius} km</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-xs sm:text-sm text-gray-700">Health Priority</span>
+                      <span className="text-xs sm:text-sm text-gray-800 font-medium">Health Priority</span>
                       <span className="text-xs sm:text-sm font-medium text-gray-900">{preferences?.healthFocus[0] || 'Not set'}</span>
                     </div>
                   </div>
