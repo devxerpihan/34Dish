@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Camera, Upload, Calendar, Apple } from 'lucide-react';
+import Image from 'next/image';
 import { mockMeals, getMealsForDate, getMonthlySummary } from '../data/mockMeals';
 import NutritionTrendsChart from './NutritionTrendsChart';
 
@@ -21,16 +22,6 @@ interface MealEntry {
   tags: string[];
 }
 
-interface DailySummary {
-  date: string;
-  totalCalories: number;
-  totalProtein: number;
-  totalCarbs: number;
-  totalFat: number;
-  meals: MealEntry[];
-  healthScore: number;
-}
-
 export default function PastMealsSection() {
   const [selectedDate, setSelectedDate] = useState(new Date(2024, 0, 15)); // January 15, 2024
   const [viewMode, setViewMode] = useState<'daily' | 'monthly'>('daily');
@@ -39,7 +30,7 @@ export default function PastMealsSection() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Use mock data
-  const [meals, setMeals] = useState<MealEntry[]>(mockMeals);
+  const [, setMeals] = useState<MealEntry[]>(mockMeals);
 
   const handlePhotoUpload = async (file: File) => {
     setIsUploading(true);
@@ -236,7 +227,7 @@ export default function PastMealsSection() {
 
               {/* Daily Meals */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-900">Today's Meals</h3>
+                <h3 className="text-lg font-semibold text-gray-900">Today&apos;s Meals</h3>
                 {dailyMeals.length === 0 ? (
                   <div className="text-center py-8 text-gray-500">
                     <Apple className="w-12 h-12 mx-auto mb-4 text-gray-300" />
@@ -252,9 +243,11 @@ export default function PastMealsSection() {
                       className="bg-gray-50 rounded-xl p-4"
                     >
                       <div className="flex items-start space-x-4">
-                        <img 
+                        <Image 
                           src={meal.image} 
                           alt={meal.name}
+                          width={80}
+                          height={80}
                           className="w-20 h-20 rounded-lg object-cover"
                         />
                         <div className="flex-1">
@@ -350,9 +343,11 @@ export default function PastMealsSection() {
                       animate={{ opacity: 1, scale: 1 }}
                       className="bg-gray-50 rounded-xl p-4 hover:shadow-md transition-shadow"
                     >
-                      <img 
+                      <Image 
                         src={meal.image} 
                         alt={meal.name}
+                        width={400}
+                        height={128}
                         className="w-full h-32 rounded-lg object-cover mb-3"
                       />
                       <h4 className="font-semibold text-gray-900 mb-2">{meal.name}</h4>

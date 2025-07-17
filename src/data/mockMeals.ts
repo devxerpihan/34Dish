@@ -1,4 +1,4 @@
-import { Target, AlertTriangle, CheckCircle, Lightbulb, Clock, Heart } from 'lucide-react';
+import { Target, AlertTriangle, CheckCircle, Lightbulb, Clock, Heart, LucideIcon } from 'lucide-react';
 
 export interface MealEntry {
   id: string;
@@ -26,14 +26,14 @@ export interface DailySummary {
   totalFat: number;
   meals: MealEntry[];
   healthScore: number;
-}
-
+  }
+ 
 export interface NutritionInsight {
   id: string;
   type: 'positive' | 'warning' | 'recommendation' | 'achievement';
   title: string;
   description: string;
-  icon: any;
+  icon: LucideIcon;
   color: string;
   bgColor: string;
   action?: string;

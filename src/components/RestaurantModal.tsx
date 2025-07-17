@@ -2,9 +2,36 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Star, MapPin, Clock, DollarSign, Heart, Car, Users, Instagram, Phone, Globe } from 'lucide-react';
+import Image from 'next/image';
+
+interface Restaurant {
+  name: string;
+  cuisine: string;
+  rating: number;
+  distance: string;
+  price: string;
+  healthScore: number;
+  image: string;
+  description: string;
+  platforms: string[];
+  socialProof: {
+    instagram?: {
+      followers: string;
+      posts: string;
+    };
+    tiktok?: {
+      views: string;
+      likes: string;
+    };
+  };
+  grabIntegration?: {
+    estimatedRideTime: string;
+    ridePrice: string;
+  };
+}
 
 interface RestaurantModalProps {
-  restaurant: any;
+  restaurant: Restaurant;
   onClose: () => void;
 }
 
@@ -41,10 +68,11 @@ export default function RestaurantModal({ restaurant, onClose }: RestaurantModal
         >
           {/* Header */}
           <div className="relative h-64 bg-gradient-to-br from-orange-500 to-red-500">
-            <img 
+            <Image 
               src={restaurant.image} 
               alt={restaurant.name}
-              className="w-full h-full object-cover opacity-80"
+              fill
+              className="object-cover opacity-80"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
             
