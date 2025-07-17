@@ -2,12 +2,13 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Settings, Heart, MapPin, Star, Car, Sparkles, CheckCircle, Search, TrendingUp, LogOut, Apple, Brain } from 'lucide-react';
+import { Send, Settings, Heart, MapPin, Star, Car, Sparkles, CheckCircle, Search, TrendingUp, LogOut, Apple, Brain, LucideIcon } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import PreferencesModal from './PreferencesModal';
 import RestaurantModal from './RestaurantModal';
 import PastMealsSection from './PastMealsSection';
 import NutritionInsights from './NutritionInsights';
+import Image from 'next/image';
 
 // Import the hardcoded user for fallback
 const HARDCODED_USER = {
@@ -39,13 +40,35 @@ interface SearchStep {
   title: string;
   description: string;
   status: 'pending' | 'active' | 'completed' | 'error';
-  icon: any;
+  icon: LucideIcon;
+}
+
+interface RestaurantRecommendation {
+  id: number;
+  name: string;
+  cuisine: string;
+  rating: number;
+  distance: string;
+  price: string;
+  healthScore: number;
+  image: string;
+  description: string;
+  platforms: string[];
+  socialProof: {
+    instagram: { followers: string; posts: string };
+    tiktok: { views: string; likes: string };
+  };
+  grabIntegration: {
+    rideAvailable: boolean;
+    estimatedRideTime: string;
+    ridePrice: string;
+  };
 }
 
 export default function Dashboard() {
-  const { user, preferences, updatePreferences, logout } = useAuth();
+  const { /* user, */ preferences, updatePreferences, logout } = useAuth();
   const [showPreferences, setShowPreferences] = useState(false);
-  const [selectedRestaurant, setSelectedRestaurant] = useState<any>(null);
+  const [selectedRestaurant, setSelectedRestaurant] = useState<RestaurantRecommendation | null>(null);
   const [inputMessage, setInputMessage] = useState('');
   const [activeTab, setActiveTab] = useState<'chat' | 'meals' | 'insights'>('chat');
   const [messages, setMessages] = useState<Message[]>([
@@ -58,7 +81,7 @@ export default function Dashboard() {
   ]);
   const [isSearching, setIsSearching] = useState(false);
   const [searchSteps, setSearchSteps] = useState<SearchStep[]>([]);
-  const [recommendations, setRecommendations] = useState<any[]>([]);
+  const [recommendations, setRecommendations] = useState<RestaurantRecommendation[]>([]);
 
   const handleSendMessage = async () => {
     if (!inputMessage.trim()) return;
@@ -139,7 +162,7 @@ export default function Dashboard() {
         description: "Fresh grain bowls with organic ingredients",
         platforms: ["grab", "google", "instagram"],
         socialProof: {
-          instagram: { followers: "12.5K", posts: 156 },
+          instagram: { followers: "12.5K", posts: "156" },
           tiktok: { views: "2.1M", likes: "89K" }
         },
         grabIntegration: {
@@ -160,7 +183,7 @@ export default function Dashboard() {
         description: "Fresh Mediterranean cuisine with local ingredients",
         platforms: ["grab", "google", "tiktok"],
         socialProof: {
-          instagram: { followers: "8.9K", posts: 89 },
+          instagram: { followers: "8.9K", posts: "89" },
           tiktok: { views: "1.2M", likes: "45K" }
         },
         grabIntegration: {
@@ -181,7 +204,7 @@ export default function Dashboard() {
         description: "High-protein meals for fitness enthusiasts",
         platforms: ["grab", "instagram"],
         socialProof: {
-          instagram: { followers: "15.2K", posts: 234 },
+          instagram: { followers: "15.2K", posts: "234" },
           tiktok: { views: "3.4M", likes: "120K" }
         },
         grabIntegration: {
@@ -466,9 +489,11 @@ export default function Dashboard() {
                       className="bg-gray-50 rounded-xl p-4 cursor-pointer transition-all hover:shadow-md"
                     >
                       <div className="flex items-start space-x-3">
-                        <img 
+                        <Image 
                           src={restaurant.image} 
                           alt={restaurant.name}
+                          width={64}
+                          height={64}
                           className="w-16 h-16 rounded-lg object-cover"
                         />
                         <div className="flex-1 min-w-0">

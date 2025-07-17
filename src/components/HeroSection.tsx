@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Search, Heart, MapPin, Star, Play, X, Clock, Target, Users } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from 'next/image';
 
 const DEMO_RESTAURANTS = [
   {
@@ -376,9 +377,11 @@ export default function HeroSection() {
                         whileHover={{ scale: 1.02 }}
                       >
                         <div className="flex space-x-4">
-                          <img
+                          <Image
                             src={restaurant.image}
                             alt={restaurant.name}
+                            width={80}
+                            height={80}
                             className="w-20 h-20 object-cover rounded-lg"
                           />
                           <div className="flex-1">

@@ -13,6 +13,7 @@ import {
   Globe,
   Smartphone
 } from 'lucide-react';
+import Image from 'next/image';
 
 const DEMO_RESTAURANTS = [
   {
@@ -201,9 +202,11 @@ export default function InteractiveDemo() {
                       whileHover={{ scale: 1.02 }}
                     >
                       <div className="flex space-x-4">
-                        <img
+                        <Image
                           src={restaurant.image}
                           alt={restaurant.name}
+                          width={80}
+                          height={80}
                           className="w-20 h-20 object-cover rounded-lg"
                         />
                         <div className="flex-1">
